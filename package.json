@@ -10,6 +10,7 @@
     "prettier": "npx prettier . --ignore-path .gitignore --write",
     "preview": "vite preview",
     "prepare": "husky",
+    "pre-commit": "npm run lint && npm run prettier",
     "start": "vite --open"
   },
   "dependencies": {
@@ -33,16 +34,5 @@
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
     "typescript": "^5.2.2"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "husky": {
-        "hooks": {
-          "pre-commit": "lint-staged"
-        }
-    }
+  }
 }
