@@ -12,6 +12,6 @@
 - find all neccesary imeges at /public/img;
 - use 'npm start' to run project in browser;
 - node version 18.x was used during setup;
-- find markup to implement on Figma:
+- find markup to implement on Figma using link:
   - [Original](<https://www.figma.com/file/T5ttF21UnT6RRmCQQaZc6L/Phone-catalog-(V2)-Original>)
   - [Original Dark](<https://www.figma.com/file/BUusqCIMAWALqfBahnyIiH/Phone-catalog-(V2)-Original-Dark>)
