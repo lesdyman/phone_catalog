@@ -2,12 +2,12 @@ import React from 'react';
 import {
   NavLink, Route, HashRouter as Router, Routes,
 } from 'react-router-dom';
-import { HomePage } from './components/Pages/HomePage/HomePage.tsx';
-import { PhonesPage } from './components/Pages/PhonePage/PhonePage.tsx';
-import { PageNotFound } from './components/Pages/PageNotFound/PageNotFound.tsx';
-import { AccessoriesPage } from './components/Pages/AccessoriesPage/AccessoriesPage.tsx';
-import { TabletsPage } from './components/Pages/TabletsPage/TabletsPage.tsx';
-import { Footer } from './components/Pages/Footer/Footer.tsx';
+import { HomePage } from './Pages/HomePage/HomePage.tsx';
+import { PhonesPage } from './Pages/PhonePage/PhonePage.tsx';
+import { PageNotFound } from './Pages/PageNotFound/PageNotFound.tsx';
+import { AccessoriesPage } from './Pages/AccessoriesPage/AccessoriesPage.tsx';
+import { TabletsPage } from './Pages/TabletsPage/TabletsPage.tsx';
+import { Footer } from './components/Footer/Footer.tsx';
 
 export const App: React.FC = () => (
   <Router>
