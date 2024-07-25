@@ -1,0 +1,20 @@
+.footer {
+  position: sticky;
+  bottom: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  z-index: -1;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link {
+    color: black;
+    text-transform: uppercase;
+  }
+}
