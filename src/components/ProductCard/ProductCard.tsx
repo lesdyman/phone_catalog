@@ -52,7 +52,9 @@ export const ProductCard: React.FC = () => (
 
     <div className="product_button">
       <button type="button" className="product_button__add">
-        <p className="product_button__text product_button__text-add">Add to card</p>
+        <p className="product_button__text product_button__text-add">
+          Add to card
+        </p>
         <p className="product_button__text product_button__text-added">Added</p>
       </button>
       <button type="button" aria-label="Like" className="product_button__like">
