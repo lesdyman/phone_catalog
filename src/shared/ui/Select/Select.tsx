@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import Select, { StylesConfig } from 'react-select';
 
@@ -26,7 +24,7 @@ const customStyles: StylesConfig = {
       backgroundColor: '#313237',
     },
   }),
-  option: (provided) => ({
+  option: provided => ({
     ...provided,
     backgroundColor: '#fff',
     color: '#89939A',
@@ -38,16 +36,12 @@ const customStyles: StylesConfig = {
       color: '#313237',
     },
   }),
-  indicatorSeparator: (provided) => ({
+  indicatorSeparator: provided => ({
     ...provided,
     display: 'none',
   }),
 };
 
 export const SelectComponent: React.FC<Props> = ({ option }) => (
-  <Select
-    styles={customStyles}
-    options={option}
-    defaultValue={option[0]}
-  />
+  <Select styles={customStyles} options={option} defaultValue={option[0]} />
 );

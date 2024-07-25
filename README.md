@@ -1,6 +1,7 @@
-
 #Initial DEMO link:
+
 - https://phone-catalog-initial.vercel.app/
+
 # Welcome to this project!
 
 - Initial DEMO link: https://phone-catalog-initial.vercel.app/
