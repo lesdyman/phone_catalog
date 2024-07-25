@@ -1,3 +1,14 @@
+:root {
+  --font-family: 'Mont', sans-serif;
+
+  --color-primary: #313237;
+  --color-secondary: #89939a;
+  --color-elements: #e2e6e9;
+  --color-icons: #b4bdc3;
+  --color-white: #ffffff;
+  --color-green: #27ae60;
+}
+
 @font-face {
   font-family: 'Mont';
   src: url('/fonts/Mont-Regular.otf') format('opentype');
@@ -17,18 +28,6 @@
   src: url('/fonts/Mont-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
-}
-
-:root {
-  --color-primary: #313237;
-  --color-secondary: #89939a;
-  --color-elements: #e2e6e9;
-  --color-icons: #b4bdc3;
-  --color-white: #ffffff;
-}
-
-body {
-  font-family: 'Mont', sans-serif;
 }
 
 .product {
@@ -57,6 +56,7 @@ body {
     margin: 8px 0;
     box-sizing: border-box;
     font-size: 14px;
+    font-family: var(--font-family);
     line-height: 21px;
     font-weight: 600;
     color: var(--color-primary);
@@ -81,6 +81,7 @@ body {
     font-size: 22px;
     line-height: 30.8px;
     font-weight: 700;
+    font-family: var(--font-family);
   }
 
   &__regular {
@@ -88,6 +89,7 @@ body {
     font-size: 22px;
     line-height: 28.12px;
     font-weight: 500;
+    font-family: var(--font-family);
     text-decoration: line-through;
     color: var(--color-secondary);
   }
@@ -109,6 +111,7 @@ body {
     font-size: 12px;
     line-height: 15.34px;
     font-weight: 600;
+    font-family: var(--font-family);
     color: var(--color-secondary);
   }
 
@@ -117,6 +120,7 @@ body {
     font-size: 12px;
     line-height: 15.34px;
     font-weight: 600;
+    font-family: var(--font-family);
     color: var(--color-primary);
   }
 }
@@ -135,15 +139,55 @@ body {
     height: 40px;
     border: none;
     box-sizing: border-box;
+    position: relative;
+    transition: box-shadow 0.3s ease;
     background-color: var(--color-primary);
     cursor: pointer;
 
     font-size: 14px;
     line-height: 21px;
-    font-family: 'Mont', sans-serif;
+    font-family: var(--font-family);
     font-weight: 700;
     text-align: center;
     color: var(--color-white);
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    }
+
+    &:active {
+      border: 1px solid var(--color-elements);
+      box-shadow: none;
+      background-color: var(--color-white);
+      color: var(--color-green);
+    }
+  }
+
+  &__text {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+
+    &-add {
+      opacity: 1;
+    }
+
+    &-added {
+      opacity: 0;
+    }
+  }
+
+  &__add:active {
+    & .product_button__text-add {
+      opacity: 0;
+    }
+
+    & .product_button__text-added {
+      opacity: 1;
+    }
   }
 
   &__like {
@@ -156,10 +200,37 @@ body {
     border: 1px solid var(--color-icons);
     background-color: var(--color-white);
     cursor: pointer;
+
+    &:hover {
+      border: 1px solid var(--color-primary);
+    }
+
+    &:active {
+      border: 1px solid var(--color-icons);
+    }
+
+    &:active {
+      & .product_button__like-image-white {
+        opacity: 0;
+      }
+
+      & .product_button__like-image-red {
+        opacity: 1;
+      }
+    }
   }
 
   &__like-image {
     width: 16px;
     height: 16px;
+    position: absolute;
+
+    &-white {
+      opacity: 1;
+    }
+
+    &-red {
+      opacity: 0;
+    }
   }
 }

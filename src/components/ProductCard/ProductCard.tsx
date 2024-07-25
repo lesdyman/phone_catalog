@@ -52,13 +52,19 @@ export const ProductCard: React.FC = () => (
 
     <div className="product_button">
       <button type="button" className="product_button__add">
-        Add to card
+        <p className="product_button__text product_button__text-add">Add to card</p>
+        <p className="product_button__text product_button__text-added">Added</p>
       </button>
       <button type="button" aria-label="Like" className="product_button__like">
         <img
-          className="product_button__like-image"
+          className="product_button__like-image product_button__like-image-white"
           src="/img/icons/heartLike.svg"
-          alt="Like button icon"
+          alt="Like button icon white"
+        />
+        <img
+          className="product_button__like-image product_button__like-image-red"
+          src="/img/icons/redHeartLike.svg"
+          alt="Like button icon red"
         />
       </button>
     </div>
