@@ -24,7 +24,7 @@ const customStyles: StylesConfig = {
       backgroundColor: '#313237',
     },
   }),
-  option: provided => ({
+  option: (provided) => ({
     ...provided,
     backgroundColor: '#fff',
     color: '#89939A',
@@ -36,7 +36,7 @@ const customStyles: StylesConfig = {
       color: '#313237',
     },
   }),
-  indicatorSeparator: provided => ({
+  indicatorSeparator: (provided) => ({
     ...provided,
     display: 'none',
   }),
