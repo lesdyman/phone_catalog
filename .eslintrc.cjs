@@ -30,5 +30,10 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'arrow-body-style': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
   },
 };
