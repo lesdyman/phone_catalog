@@ -2,14 +2,14 @@ import React from 'react';
 import './ProductCard.scss';
 
 type Product = {
-  images: string,
-  name: string,
-  priceRegular: string,
-  priceDiscount: string,
-  screen: string,
-  capacity: string,
-  ram: string,
-}
+  images: string;
+  name: string;
+  priceRegular: string;
+  priceDiscount: string;
+  screen: string;
+  capacity: string;
+  ram: string;
+};
 
 const product: Product = {
   images: 'img/phones/apple-iphone-14-pro/gold/00.webp',
@@ -51,9 +51,15 @@ export const ProductCard: React.FC = () => (
     </div>
 
     <div className="product_button">
-      <button type="button" className="product_button__add">Add to card</button>
+      <button type="button" className="product_button__add">
+        Add to card
+      </button>
       <button type="button" aria-label="Like" className="product_button__like">
-        <img className="product_button__like-image" src="/img/icons/heartLike.svg" alt="Like button icon" />
+        <img
+          className="product_button__like-image"
+          src="/img/icons/heartLike.svg"
+          alt="Like button icon"
+        />
       </button>
     </div>
   </div>
