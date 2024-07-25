@@ -35,5 +35,9 @@ module.exports = {
     'import/no-unresolved': 'off',
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'warn',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+    ],
   },
 };
