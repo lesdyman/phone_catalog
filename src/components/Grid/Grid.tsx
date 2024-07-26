@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/react-in-jsx-scope */
 import { SelectComponent } from '../../shared/ui/Select/Select.tsx';
 import './Grid.scss';
