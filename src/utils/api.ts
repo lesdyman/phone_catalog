@@ -2,7 +2,7 @@ import { Device } from '../types/Device';
 import { FetchOption } from '../types/FetchOption';
 import { Product } from '../types/Product';
 
-const BASE_URL = 'http://localhost:5173/api/';
+const BASE_URL = 'https://lesdyman.github.io/lets_try/';
 
 export const get = async <T>(url: string): Promise<T> => {
   const fullURL = `${BASE_URL + url}.json`;

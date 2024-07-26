@@ -44,10 +44,7 @@ const customStyles: StylesConfig = {
   }),
 };
 
-export const SelectComponent: React.FC<Props> = ({
-  option,
-  handleChange,
-}) => (
+export const SelectComponent: React.FC<Props> = ({ option, handleChange }) => (
   <Select
     styles={customStyles}
     options={option}

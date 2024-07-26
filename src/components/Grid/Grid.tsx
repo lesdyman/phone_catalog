@@ -43,7 +43,7 @@ export const Grid = () => {
     setItemsPerPage(parseInt(selectedOption.value, 10));
   };
 
-  const handleSortByVersion = (selectedOption: {value: string}) => {
+  const handleSortByVersion = (selectedOption: { value: string }) => {
     const select = selectedOption.value;
     // eslint-disable-next-line no-console
     console.log(select);
