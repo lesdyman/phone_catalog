@@ -1,0 +1,302 @@
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+$mainFont: Mont, sans-serif;
+
+.component {
+  position: relative;
+}
+
+.container {
+  width: 1136px;
+  display: flex;
+  flex-direction: column;
+}
+
+.backButton {
+  width: 50px;
+  height: 16px;
+  background-image: url('../../../public/Icons/Chevron\ \(Arrow\ Left\).svg');
+  background-position: left;
+  background-repeat: no-repeat;
+  text-align: right;
+  font-family: $mainFont;
+  font-size: 12px;
+  font-weight: 700;
+  color: #89939a;
+  margin-top: 40px;
+  border: none;
+  background-color: #fff;
+  padding: 0;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #313237;
+  background-image: url('../../../public/Icons/Chevron\ \(Arrow\ Right\)Dark.svg');
+}
+
+.title {
+  font-family: $mainFont;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 56px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #313237;
+  margin: 16px 0 32px;
+}
+
+.interface {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cartGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px 0;
+  width: 752px;
+  margin-bottom: 80px;
+}
+
+.NewExample {
+  background-image: url('../../../public/img/product-not-found.png');
+  background-repeat: no-repeat;
+  width: 752px;
+  height: 128px;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid #e2e6e9;
+  box-sizing: border-box;
+  transition: 300ms;
+}
+
+.NewExample:hover {
+  transform: scale(105%);
+}
+
+.orderInterface {
+  width: 368px;
+  height: 206px;
+  border: 1px solid #e2e6e9;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.totalPrice {
+  font-family: $mainFont;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #313237;
+  margin: 23px 0 0;
+}
+
+.line {
+  border: 0.5px solid #E2E6E9;
+  box-sizing: border-box;
+  width: 321px;
+  height: 1px;
+  margin: 25px 0 24px;
+}
+
+.itemsCount {
+  font-family: $mainFont;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: center;
+  color: #89939a;
+}
+
+.checkout {
+  width: 320px;
+  height: 48px;
+  font-family: $mainFont;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: center;
+  color: white;
+  background-color: #313237;
+  border: 1px solid #313237;
+  box-sizing: border-box;
+  border-radius: 0;
+  transition: 200ms;
+}
+
+.checkout:hover {
+  box-shadow: 0px 3px 13px 0px #17203166;
+}
+
+.checkout:active {
+  transform: scale(98%);
+  box-shadow: 0px 7px 17px 0px #17203166;
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items:center
+}
+
+.content {
+  width: 592px;
+  height: 300px;
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.doneTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.doneLogo {
+  width: 200px;
+  height: 200px;
+  background-image: url('../../../public/Icons/done-round.svg');
+  background-position: center;
+  background-size: contain;
+}
+
+.orderTitle {
+  font-family: $mainFont;
+}
+
+.homeButton {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: #fff;
+  background-image: url('../../../public/Icons/Close.svg');
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    width: 592px;
+  }
+  
+  .title {
+    width: 592px;
+  }
+
+  .interface {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cartGrid {
+    width: 592px;
+    margin-bottom: 32px;
+  }
+
+  .NewExample {
+    width: 592px;
+  }
+
+  .orderInterface {
+    width: 592px;
+    margin-bottom: 64px;
+  }
+
+  .line {
+    width: 544px;
+  }
+
+  .checkout {
+    width: 544px;
+  }
+
+}
+
+@media (max-width: 639px) {
+  .container {
+    width: 288px;
+  }
+  
+  .title {
+    width: 288px;
+  }
+
+.cartGrid {
+    width: 288px;
+    margin-bottom: 32px;
+  }
+
+.NewExample {
+    width: 288px;
+  }
+
+.orderInterface {
+    width: 288px;
+    margin-bottom: 56px;
+  }
+
+.line {
+    width: 240px;
+  }
+
+.checkout {
+    width: 240px;
+  }
+
+  .content {
+    width: 50vh;
+    height: 70%;
+    flex-direction: column;
+  }
+  
+  .doneLogo {
+    width: 200px;
+    height: 200px;
+    background-image: url('../../../public/Icons/done-round.svg');
+    background-position: center;
+    background-size: contain;
+  }
+
+  .homeButton {
+    width: 30px;
+    height: 30px;
+  }
+}

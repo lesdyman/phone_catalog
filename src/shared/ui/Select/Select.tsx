@@ -43,5 +43,5 @@ const customStyles: StylesConfig = {
 };
 
 export const SelectComponent: React.FC<Props> = ({ option }) => (
-  <Select styles={customStyles} options={option} defaultValue={option[0]} />
+  <Select styles={customStyles} options={option} defaultValue={option[0]} isSearchable={false} />
 );
