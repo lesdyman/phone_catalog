@@ -3,7 +3,7 @@ $header-height-tablet: 48px;
 
 .header {
   display: flex;
-  box-shadow: 0px 1px 0px 0px #E2E6E9;
+  box-shadow: 0px 1px 0px 0px #e2e6e9;
   @include on-tablet {
     height: $header-height-tablet;
   }
@@ -18,17 +18,17 @@ $header-height-tablet: 48px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
-      
-  @include on-tablet {
-    height: $header-height-tablet;
+
+    @include on-tablet {
+      height: $header-height-tablet;
+    }
+
+    @include on-desktop {
+      height: $header-height-desktop;
+    }
   }
 
-  @include on-desktop {
-    height: $header-height-desktop;
-  }
-  }
-
-  &__logo{
+  &__logo {
     display: flex;
     box-sizing: border-box;
 
@@ -46,11 +46,11 @@ $header-height-tablet: 48px;
   }
 
   &__left {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
   }
 
   @include on-tablet {
@@ -61,8 +61,6 @@ $header-height-tablet: 48px;
     gap: 24px;
   }
 }
-
-
 
 .nav {
   display: flex;
@@ -81,7 +79,7 @@ $header-height-tablet: 48px;
     @include on-tablet {
       gap: 32px;
     }
-  
+
     @include on-desktop {
       gap: 64px;
     }
@@ -90,7 +88,6 @@ $header-height-tablet: 48px;
       display: none;
     }
   }
-  
 
   &__link {
     display: block;
@@ -100,10 +97,10 @@ $header-height-tablet: 48px;
     font-weight: 800;
 
     text-transform: uppercase;
-    color: #89939A;
+    color: #89939a;
 
     height: 100%;
-    
+
     @include on-tablet {
       padding: 17px 0;
     }
@@ -117,7 +114,7 @@ $header-height-tablet: 48px;
     &:hover {
       color: #313237;
     }
-}
+  }
 }
 
 .is-active {
@@ -140,7 +137,7 @@ $header-height-tablet: 48px;
 
 .icons {
   display: flex;
-  box-shadow: -1px 0 0 0 #E2E6E9;
+  box-shadow: -1px 0 0 0 #e2e6e9;
 
   @include on-tablet {
     padding: 16px;
@@ -158,10 +155,10 @@ $header-height-tablet: 48px;
 }
 
 .icon {
-display: flex;
-align-items: center;
-width: 16px;
-height: 16px;
+  display: flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
 
   &--heart {
     background-image: url(../header/heartLike.svg);
@@ -176,7 +173,7 @@ height: 16px;
   display: none;
   @include on-phone {
     display: flex;
-    box-shadow: -1px 0 0 0 #E2E6E9;
+    box-shadow: -1px 0 0 0 #e2e6e9;
     flex-direction: column;
     justify-content: space-between;
     width: 24px;

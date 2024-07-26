@@ -8,10 +8,7 @@ export const Header: React.FC = () => {
       <div className="container">
         <div className="header__left">
           <a href="home" className="header__logo">
-            <img
-              src="./src/page/header/logo.svg"
-              alt="Nice Gadgets logo"
-            />
+            <img src="./src/page/header/logo.svg" alt="Nice Gadgets logo" />
           </a>
 
           <Router>
