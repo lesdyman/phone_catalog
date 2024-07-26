@@ -1,8 +1,8 @@
 import React from 'react';
+import { Grid } from '../../components/Grid/Grid.tsx';
 
 export const PhonesPage: React.FC = () => (
   <div>
-    <h1>Phones Page</h1>
-    <p>Here is the list of phones...</p>
+    <Grid />
   </div>
 );
