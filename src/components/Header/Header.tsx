@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 import './Header.scss';
 
 export const Header: React.FC = () => (
-  <nav>
-    <ul>
+  <nav className="navigation">
+    <ul className="navigation_list">
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''} navigation_list-link`}
         >
           Home
         </NavLink>
@@ -16,7 +16,7 @@ export const Header: React.FC = () => (
       <li>
         <NavLink
           to="/phones"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''} navigation_list-link`}
         >
           Phones
         </NavLink>
@@ -24,7 +24,7 @@ export const Header: React.FC = () => (
       <li>
         <NavLink
           to="/tablets"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''} navigation_list-link`}
         >
           Tablets
         </NavLink>
@@ -32,7 +32,7 @@ export const Header: React.FC = () => (
       <li>
         <NavLink
           to="/accessories"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''} navigation_list-link`}
         >
           Accessories
         </NavLink>
