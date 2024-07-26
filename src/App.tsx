@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 import { HomePage } from './Pages/HomePage/HomePage.tsx';
