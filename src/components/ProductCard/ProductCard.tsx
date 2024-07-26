@@ -4,11 +4,15 @@ import { Device } from '../../types/Device';
 
 type Props = {
   phone: Device;
-}
+};
 
 export const ProductCard: React.FC<Props> = ({ phone }) => (
   <div className="product" key={phone.id}>
-    <img src={phone.images[0]} alt={phone.name} className="product_images list__item example" />
+    <img
+      src={phone.images[0]}
+      alt={phone.name}
+      className="product_images list__item example"
+    />
     <h2 className="product_name">{phone.name}</h2>
 
     <div className="product_price">
