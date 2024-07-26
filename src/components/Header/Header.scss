@@ -1,0 +1,19 @@
+.navigation {
+  position: sticky;
+  top: 0;
+  text-align: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: grey;
+  z-index: 1;
+  &_list {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    &-link {
+      text-decoration: none;
+      color: black;
+      margin: 40px;
+    }
+  }
+}

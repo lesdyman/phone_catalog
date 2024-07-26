@@ -1,0 +1,242 @@
+:root {
+  --font-family: 'Mont', sans-serif;
+
+  --color-primary: #313237;
+  --color-secondary: #89939a;
+  --color-elements: #e2e6e9;
+  --color-icons: #b4bdc3;
+  --color-white: #ffffff;
+  --color-green: #27ae60;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Regular.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+  height: 100%;
+  padding: 32px;
+  border: 1px solid var(--color-elements);
+  border-radius: 1px;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+  transition: 300ms;
+
+  &_images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border: none;
+  }
+
+  &_name {
+    width: 100%;
+    height: 58px;
+    padding-top: 16px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: var(--font-family);
+    line-height: 21px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  &_divider {
+    margin: 0;
+    width: 208px;
+    height: 0;
+    border: none;
+    box-shadow: 0 0 0 1px var(--color-elements);
+  }
+  &:hover {
+    transform: scale(105%);
+    rotate: none;
+  }
+}
+
+.product_price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  &__discount {
+    margin: 0 8px 0 0;
+    font-size: 22px;
+    line-height: 30.8px;
+    font-weight: 700;
+    font-family: var(--font-family);
+  }
+
+  &__regular {
+    margin: 1.5px 0;
+    font-size: 22px;
+    line-height: 28.12px;
+    font-weight: 500;
+    font-family: var(--font-family);
+    text-decoration: line-through;
+    color: var(--color-secondary);
+  }
+}
+
+.product_specs {
+  padding-top: 8px;
+  margin: 8px 0;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 12px;
+    line-height: 15.34px;
+    font-weight: 600;
+    font-family: var(--font-family);
+    color: var(--color-secondary);
+  }
+
+  &__value {
+    margin: 0;
+    font-size: 12px;
+    line-height: 15.34px;
+    font-weight: 600;
+    font-family: var(--font-family);
+    color: var(--color-primary);
+  }
+}
+
+.product_button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 40px;
+    border: none;
+    box-sizing: border-box;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    background-color: var(--color-primary);
+    cursor: pointer;
+
+    font-size: 14px;
+    line-height: 21px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-white);
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    }
+
+    &:active {
+      border: 1px solid var(--color-elements);
+      box-shadow: none;
+      background-color: var(--color-white);
+      color: var(--color-green);
+    }
+  }
+
+  &__text {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+
+    &-add {
+      opacity: 1;
+    }
+
+    &-added {
+      opacity: 0;
+    }
+  }
+
+  &__add:active {
+    & .product_button__text-add {
+      opacity: 0;
+    }
+
+    & .product_button__text-added {
+      opacity: 1;
+    }
+  }
+
+  &__like {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 12px;
+    border: 1px solid var(--color-icons);
+    background-color: var(--color-white);
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid var(--color-primary);
+    }
+
+    &:active {
+      border: 1px solid var(--color-icons);
+    }
+
+    &:active {
+      & .product_button__like-image-white {
+        opacity: 0;
+      }
+
+      & .product_button__like-image-red {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__like-image {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+
+    &-white {
+      opacity: 1;
+    }
+
+    &-red {
+      opacity: 0;
+    }
+  }
+}

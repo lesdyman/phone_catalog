@@ -30,5 +30,15 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'arrow-body-style': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'no-shadow': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+    ],
   },
 };
