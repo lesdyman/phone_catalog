@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Regular.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 .footer {
   position: sticky;
   bottom: 0;
@@ -5,16 +12,56 @@
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   text-align: center;
   z-index: -1;
+  
+  &__item {
+    font-size: 12px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    font-family: Mont;
+    font-weight: bold;
+    line-height: 96px;
+    color: #89939A;
+  }
+  &__link {
+    text-transform: uppercase;
+    margin: 0 100px 0 0;
+  }
+
+  &__logo__link {
+    height: 96px;
+  }
+
+  &__logo {
+    height: 32px;
+    margin: 32px 0 32px 150px;
+  }
 
   &__container {
+    height: 96px;
     display: flex;
     justify-content: space-between;
   }
+}
+
+.back-to-top {
+  height: 96px;
+  display: flex;
+  flex-direction: row;
+  line-height: 96px;
+  margin: 0 150px 0 0;
+  justify-content: center;
+  align-items: center;
 
   &__link {
-    color: black;
-    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__logo {
+    margin-left: 16px;
   }
 }
