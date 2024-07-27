@@ -222,6 +222,10 @@ body {
     margin: 0 4px;
     color: #313237;
     background-color: #ffffff;
+    &.active {
+      background-color: #070e31;
+      color: #ffffff;
+    }
 
     &:hover {
       border-color: #313237;
@@ -229,6 +233,10 @@ body {
 
     &:focus {
       border-color: #313237;
+      background-color: #070e31;
+      color: #ffffff;
+    }
+    &:active {
       background-color: #070e31;
       color: #ffffff;
     }
