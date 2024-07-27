@@ -7,11 +7,13 @@ import { ProductCard } from '../ProductCard/ProductCard';
 import { Product } from '../../types/Product';
 
 const SortOptions = [
+  { value: 'default', label: 'Select...' },
   { value: 'newest', label: 'Newest' },
   { value: 'oldest', label: 'Oldest' },
 ];
 
 const onPageCountOptions = [
+  { value: 'default', label: 'Select...' },
   { value: '10', label: '10' },
   { value: '20', label: '20' },
   { value: '30', label: '30' },
@@ -20,7 +22,7 @@ const onPageCountOptions = [
 export const Grid = () => {
   const [allPhones, setAllPhones] = useState<Product[]>([]);
   const [displayedPhones, setDisplayedPhones] = useState<Product[]>([]);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(40);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const loadPhones = async () => {
@@ -50,6 +52,10 @@ export const Grid = () => {
 
   const handleSortByYear = (selectedOption: { value: string }) => {
     const select = selectedOption.value;
+
+    if (select === SortOptions[0].value) {
+      return;
+    }
     const itemsToSort = [...allPhones];
     const sorted = itemsToSort.sort((item1, item2) => {
       if (select === 'newest') {

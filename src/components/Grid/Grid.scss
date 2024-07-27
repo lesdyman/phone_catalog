@@ -21,11 +21,6 @@
 
 $mainFont: Mont, sans-serif;
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .component {
   display: flex;
   justify-content: center;
@@ -222,6 +217,7 @@ body {
     margin: 0 4px;
     color: #313237;
     background-color: #ffffff;
+
     &.active {
       background-color: #070e31;
       color: #ffffff;
@@ -236,6 +232,7 @@ body {
       background-color: #070e31;
       color: #ffffff;
     }
+
     &:active {
       background-color: #070e31;
       color: #ffffff;

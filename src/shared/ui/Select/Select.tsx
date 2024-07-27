@@ -44,12 +44,21 @@ const customStyles: StylesConfig = {
   }),
 };
 
-export const SelectComponent: React.FC<Props> = ({ option, handleChange }) => (
-  <Select
-    styles={customStyles}
-    options={option}
-    defaultValue={option[0]}
-    isSearchable={false}
-    onChange={handleChange}
-  />
-);
+export const SelectComponent: React.FC<Props> = ({ option, handleChange }) => {
+  const defaultOption = option[0];
+
+  const modifiedOptions = option.map((opt) => ({
+    ...opt,
+    isDisabled: opt === defaultOption,
+  }));
+
+  return (
+    <Select
+      styles={customStyles}
+      options={modifiedOptions}
+      defaultValue={option[0]}
+      isSearchable={false}
+      onChange={handleChange}
+    />
+  );
+};
