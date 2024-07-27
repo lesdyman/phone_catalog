@@ -6,13 +6,11 @@ import { PageNotFound } from './Pages/PageNotFound/PageNotFound.tsx';
 import { AccessoriesPage } from './Pages/AccessoriesPage/AccessoriesPage.tsx';
 import { TabletsPage } from './Pages/TabletsPage/TabletsPage.tsx';
 import { Footer } from './components/Footer/Footer.tsx';
-import { Header } from './components/Header/Header.tsx';
 import './App.scss';
 
 export const App: React.FC = () => (
   <Router>
     <div className="wrapper">
-      <Header />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
