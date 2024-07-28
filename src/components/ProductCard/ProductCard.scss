@@ -40,6 +40,7 @@
   border-radius: 1px;
   box-sizing: border-box;
   background-color: var(--color-white);
+  transition: 300ms;
 
   &_images {
     display: flex;
@@ -47,6 +48,7 @@
     height: 100%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
+    border: none;
   }
 
   &_name {
@@ -68,6 +70,10 @@
     height: 0;
     border: none;
     box-shadow: 0 0 0 1px var(--color-elements);
+  }
+  &:hover {
+    transform: scale(105%);
+    rotate: none;
   }
 }
 
