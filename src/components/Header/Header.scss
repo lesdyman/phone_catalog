@@ -193,6 +193,7 @@ $header-height-tablet: 48px;
 
 .burger-menu {
   display: none;
+
   @include on-phone {
     display: flex;
     box-shadow: -1px 0 0 0 #e2e6e9;
@@ -202,6 +203,15 @@ $header-height-tablet: 48px;
     height: 24px;
     padding: 16px;
     cursor: pointer;
+
+    &-link {
+      display: flex;
+      background-image: url(./menu.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100%;
+      width: 100%;
+    }
 
     span {
       display: block;
