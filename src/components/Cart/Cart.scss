@@ -21,8 +21,9 @@
 
 $mainFont: Mont, sans-serif;
 
-.component {
-  position: relative;
+.cart {
+  display: flex;
+  justify-content: center;
 }
 
 .container {
@@ -118,7 +119,7 @@ $mainFont: Mont, sans-serif;
 }
 
 .line {
-  border: 0.5px solid #E2E6E9;
+  border: 0.5px solid #e2e6e9;
   box-sizing: border-box;
   width: 321px;
   height: 1px;
@@ -166,7 +167,7 @@ $mainFont: Mont, sans-serif;
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
-  align-items:center
+  align-items: center;
 }
 
 .content {
@@ -216,7 +217,7 @@ $mainFont: Mont, sans-serif;
   .container {
     width: 592px;
   }
-  
+
   .title {
     width: 592px;
   }
@@ -247,37 +248,36 @@ $mainFont: Mont, sans-serif;
   .checkout {
     width: 544px;
   }
-
 }
 
 @media (max-width: 639px) {
   .container {
     width: 288px;
   }
-  
+
   .title {
     width: 288px;
   }
 
-.cartGrid {
+  .cartGrid {
     width: 288px;
     margin-bottom: 32px;
   }
 
-.NewExample {
+  .NewExample {
     width: 288px;
   }
 
-.orderInterface {
+  .orderInterface {
     width: 288px;
     margin-bottom: 56px;
   }
 
-.line {
+  .line {
     width: 240px;
   }
 
-.checkout {
+  .checkout {
     width: 240px;
   }
 
@@ -286,7 +286,7 @@ $mainFont: Mont, sans-serif;
     height: 70%;
     flex-direction: column;
   }
-  
+
   .doneLogo {
     width: 200px;
     height: 200px;

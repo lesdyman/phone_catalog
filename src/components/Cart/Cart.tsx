@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable react/react-in-jsx-scope */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './Cart.scss';
 
 export const Cart = () => {
@@ -22,7 +20,7 @@ export const Cart = () => {
   }
 
   return (
-    <div className="component">
+    <div className="cart">
       <div className="container">
         <button type="button" className="backButton" onClick={goBack}>
           Back
@@ -30,27 +28,23 @@ export const Cart = () => {
         <h1 className="title">Cart</h1>
         <div className="interface">
           <div className="cartGrid">
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
-            <div className="NewExample"></div>
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
+            <div className="NewExample" />
           </div>
           <div className="orderInterface">
             <h1 className="totalPrice">$2657</h1>
             <div className="itemsCount">Total for 3 items</div>
-            <div className="line"></div>
-            <button
-              type="button"
-              className="checkout"
-              onClick={orderAccept}
-            >
+            <div className="line" />
+            <button type="button" className="checkout" onClick={orderAccept}>
               Checkout
             </button>
           </div>
