@@ -181,7 +181,6 @@ $header-height-tablet: 48px;
 
 .burger-menu {
   display: none;
-
   @include on-phone {
     display: flex;
     box-shadow: -1px 0 0 0 #e2e6e9;
