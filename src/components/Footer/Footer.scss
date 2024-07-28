@@ -6,6 +6,7 @@
 }
 
 .footer {
+  margin-bottom: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,7 +33,9 @@
   }
 
   &__logo-link {
+    padding-left: 50px;
     @media (max-width: 641px) {
+
       height: 32px;
     }
   }
@@ -43,6 +46,7 @@
     justify-content: center;
 
     @media (max-width: 641px) {
+      padding-left: 50px;
       flex-direction: column;
       gap: 20px;
     }
@@ -55,6 +59,7 @@
   line-height: 11px;
   justify-content: center;
   align-items: center;
+  padding-right: 50px;
 
   @media (max-width: 641px) {
     align-self: center;
