@@ -7,9 +7,11 @@ export const Header: React.FC = () => {
     <header className="header">
       <div className="container">
         <div className="header__left">
-          <a href="home" className="header__logo">
-            <img src="public/img/logo.png" alt="Nice Gadgets logo" />
-          </a>
+          <div className="logo__container">
+            <a href="home" className="header__logo">
+              {/* <img src="/src/assets/logo.svg" alt="Nice Gadgets logo" /> */}
+            </a>
+          </div>
           <nav>
             <ul className="nav__list">
               <li className="nav__item">
