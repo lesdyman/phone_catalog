@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SelectComponent } from '../../shared/ui/Select/Select';
 import './Grid.scss';
 import { getProducts } from '../../utils/api';
@@ -35,15 +35,19 @@ export const Grid = () => {
     }
   };
 
+  const updateDisplayedPhones = useCallback(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setDisplayedPhones(allPhones.slice(startIndex, endIndex));
+  }, [itemsPerPage, currentPage, allPhones]);
+
   useEffect(() => {
     loadPhones();
   }, []);
 
   useEffect(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setDisplayedPhones(allPhones.slice(startIndex, endIndex));
-  }, [itemsPerPage, currentPage, allPhones]);
+    updateDisplayedPhones();
+  }, [updateDisplayedPhones]);
 
   const handleItemsPerPageChange = (selectedOption: { value: string }) => {
     setItemsPerPage(parseInt(selectedOption.value, 10));
