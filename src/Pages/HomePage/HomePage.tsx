@@ -1,4 +1,3 @@
 import React from 'react';
-import { Header } from '../../components/Header/Header';
 
-export const HomePage: React.FC = () => <Header />;
+export const HomePage: React.FC = () => <h1>Home Page</h1>;
