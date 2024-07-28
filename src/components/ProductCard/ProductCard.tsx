@@ -1,23 +1,24 @@
 import React from 'react';
 import './ProductCard.scss';
-import { Device } from '../../types/Device';
+// import { Device } from '../../types/Device';
+import { Product } from '../../types/Product';
 
 type Props = {
-  phone: Device;
+  phone: Product;
 };
 
 export const ProductCard: React.FC<Props> = ({ phone }) => (
-  <div className="product" key={phone.id}>
+  <div className="product">
     <img
-      src={phone.images[0]}
+      src={phone.image}
       alt={phone.name}
       className="product_images list__item example"
     />
     <h2 className="product_name">{phone.name}</h2>
 
     <div className="product_price">
-      <p className="product_price__discount">{phone.priceDiscount}</p>
-      <p className="product_price__regular">{phone.priceRegular}</p>
+      <p className="product_price__discount">{phone.price}</p>
+      <p className="product_price__regular">{phone.fullPrice}</p>
     </div>
 
     <hr className="product_divider" />

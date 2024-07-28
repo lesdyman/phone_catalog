@@ -21,11 +21,6 @@
 
 $mainFont: Mont, sans-serif;
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .component {
   display: flex;
   justify-content: center;
@@ -223,12 +218,22 @@ body {
     color: #313237;
     background-color: #ffffff;
 
+    &.active {
+      background-color: #070e31;
+      color: #ffffff;
+    }
+
     &:hover {
       border-color: #313237;
     }
 
     &:focus {
       border-color: #313237;
+      background-color: #070e31;
+      color: #ffffff;
+    }
+
+    &:active {
       background-color: #070e31;
       color: #ffffff;
     }
