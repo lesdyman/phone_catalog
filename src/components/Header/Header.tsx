@@ -1,42 +1,67 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import { NavLink } from 'react-router-dom';
-import './Header.scss';
+import './index.scss';
+import React from 'react';
 
-export const Header: React.FC = () => (
-  <nav>
-    <ul>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/phones"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
-        >
-          Phones
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/tablets"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
-        >
-          Tablets
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/accessories"
-          className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
-        >
-          Accessories
-        </NavLink>
-      </li>
-    </ul>
-  </nav>
-);
+export const Header: React.FC = () => {
+  return (
+    <header className="header">
+      <div className="container">
+        <div className="header__left">
+          <a href="home" className="header__logo">
+            <img src="./src/components/Header/logo.svg" alt="Nice Gadgets logo" />
+          </a>
+          <nav>
+            <ul className="nav__list">
+              <li className="nav__item">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav__item">
+                <NavLink
+                  to="/phones"
+                  className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+                >
+                  Phones
+                </NavLink>
+              </li>
+              <li className="nav__item">
+                <NavLink
+                  to="/tablets"
+                  className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+                >
+                  Tablets
+                </NavLink>
+              </li>
+              <li className="nav__item">
+                <NavLink
+                  to="/accessories"
+                  className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+                >
+                  Accessories
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div className="header__right">
+          <div className="icons">
+            <a href="heart" className="icon icon--heart" />
+
+            <a href="cart" className="icon icon--cart" />
+          </div>
+        </div>
+
+        <div className="burger-menu">
+          <img src="./src/components/Header/menu.svg" alt="Menu" />
+        </div>
+      </div>
+    </header>
+  );
+};
