@@ -1,6 +1,6 @@
 #Initial DEMO link:
 
-- https://phone-catalog-pi.vercel.app/
+- https://phone-catalog-initial.vercel.app/
 
 # Welcome to this project!
 
