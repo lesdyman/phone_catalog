@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/anchor-has-content */
 import { NavLink } from 'react-router-dom';
 import './index.scss';
 import React from 'react';
@@ -52,14 +50,13 @@ export const Header: React.FC = () => {
 
         <div className="header__right">
           <div className="icons">
-            <a href="heart" className="icon icon--heart" />
-
-            <a href="cart" className="icon icon--cart" />
+            <a href="heart" className="icon icon--heart" aria-label="Heart" />
+            <a href="cart" className="icon icon--cart" aria-label="Cart" />
           </div>
         </div>
 
         <div className="burger-menu">
-          <img src="./src/components/Header/menu.svg" alt="Menu" />
+          <img src="./src/components/Header/img/menu.svg" alt="Menu" />
         </div>
       </div>
     </header>
