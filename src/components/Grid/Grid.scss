@@ -21,11 +21,6 @@
 
 $mainFont: Mont, sans-serif;
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .component {
   display: flex;
   justify-content: center;
@@ -162,14 +157,6 @@ body {
   border: 1px solid #e2e6e9;
   transition: 300ms;
   box-sizing: border-box;
-  background-image: url('../../../public/img/page-not-found.png'); // прибрати
-  background-position: center; // прибрати
-  // transform: rotate(180deg); // прибрати
-
-  &:hover {
-    transform: scale(110%);
-    rotate: none;
-  }
 }
 
 .nav-wrap {
@@ -188,7 +175,7 @@ body {
       border-color: #313237;
     }
 
-    &:focus {
+    &:active {
       background-color: #313237;
       background-image: url('/Icons/Chevron (Arrow Left).svg');
     }
@@ -210,7 +197,7 @@ body {
       border-color: #313237;
     }
 
-    &:focus {
+    &:active {
       background-color: #313237;
       background-image: url('/Icons/Chevron (Arrow Right).svg');
       transform: none;
@@ -231,13 +218,23 @@ body {
     color: #313237;
     background-color: #ffffff;
 
+    &.active {
+      background-color: #070e31;
+      color: #ffffff;
+    }
+
     &:hover {
       border-color: #313237;
     }
 
     &:active {
       border-color: #313237;
-      background-color: #313237;
+      background-color: #070e31;
+      color: #ffffff;
+    }
+
+    &:active {
+      background-color: #070e31;
       color: #ffffff;
     }
   }
