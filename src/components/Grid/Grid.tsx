@@ -19,11 +19,14 @@ const onPageCountOptions = [
   { value: '30', label: '30' },
 ];
 
+const PAGES_DEFAULT = [1, 2, 3, 4];
+
 export const Grid = () => {
   const [allPhones, setAllPhones] = useState<Product[]>([]);
   const [displayedPhones, setDisplayedPhones] = useState<Product[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(40);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pagesOnScreen, setPagesOnScreen] = useState<number[]>(PAGES_DEFAULT);
 
   const loadPhones = async () => {
     try {
@@ -47,30 +50,28 @@ export const Grid = () => {
 
   useEffect(() => {
     updateDisplayedPhones();
-  }, [updateDisplayedPhones]);
+  }, [updateDisplayedPhones, pagesOnScreen]);
 
   const handleItemsPerPageChange = (selectedOption: { value: string }) => {
-    setItemsPerPage(parseInt(selectedOption.value, 10));
+    const newItemsPerPage = parseInt(selectedOption.value, 10);
+    setItemsPerPage(newItemsPerPage);
     setCurrentPage(1);
+    setPagesOnScreen([1, 2, 3, 4]);
   };
 
   const handleSortByYear = (selectedOption: { value: string }) => {
     const select = selectedOption.value;
+    const sortedPhones = [...allPhones];
 
-    if (select === SortOptions[0].value) {
-      return;
+    if (select === 'newest') {
+      sortedPhones.sort((a, b) => b.year - a.year);
+    } else if (select === 'oldest') {
+      sortedPhones.sort((a, b) => a.year - b.year);
     }
-    const itemsToSort = [...allPhones];
-    const sorted = itemsToSort.sort((item1, item2) => {
-      if (select === 'newest') {
-        return item2.year - item1.year;
-      }
-      if (select === 'oldest') {
-        return item1.year - item2.year;
-      }
-      return 0;
-    });
-    setAllPhones(sorted);
+
+    setAllPhones(sortedPhones);
+    setCurrentPage(1);
+    setPagesOnScreen([1, 2, 3, 4]);
   };
 
   const getTotalPages = (
@@ -81,8 +82,34 @@ export const Grid = () => {
     return Array.from({ length: pageCount }, (_, i) => i + 1);
   };
 
-  const handlePageChange = (pageNumber: number) => {
+  const handlePaginationClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+
+    const totalPages = getTotalPages(allPhones, itemsPerPage);
+
+    if (pageNumber <= totalPages[totalPages.length - 1]) {
+      let startPage = 1;
+      let endPage = 4;
+
+      if (pageNumber >= 4) {
+        startPage = pageNumber - 1;
+        endPage = Math.min(startPage + 3, totalPages.length);
+      }
+
+      if (totalPages.length <= 4) {
+        startPage = 1;
+        endPage = totalPages.length;
+      } else if (endPage - startPage < 3) {
+        startPage = Math.max(1, endPage - 3);
+      }
+
+      const onDisplay = Array.from(
+        { length: endPage - startPage + 1 },
+        (_, i) => startPage + i,
+      );
+
+      setPagesOnScreen(onDisplay);
+    }
   };
 
   return (
@@ -135,16 +162,16 @@ export const Grid = () => {
             type="button"
             aria-label="back"
             disabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => handlePaginationClick(currentPage - 1)}
           />
-          {getTotalPages(allPhones, itemsPerPage).map((page) => (
+          {pagesOnScreen.map((page) => (
             <button
               className={classNames('nav-wrap__page', {
                 active: page === currentPage,
               })}
               type="button"
               key={page}
-              onClick={() => handlePageChange(page)}
+              onClick={() => handlePaginationClick(page)}
             >
               {page}
             </button>
@@ -156,7 +183,7 @@ export const Grid = () => {
             disabled={
               currentPage === getTotalPages(allPhones, itemsPerPage).length
             }
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => handlePaginationClick(currentPage + 1)}
           />
         </div>
       </div>
