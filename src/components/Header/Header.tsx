@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './index.scss';
 import React from 'react';
+import logo from './logo.svg';
 
 export const Header: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ export const Header: React.FC = () => {
         <div className="header__left">
           <a href="home" className="header__logo">
             <img
-              src="./src/components/Header/logo.svg"
+              src={logo}
               alt="Nice Gadgets logo"
             />
           </a>
