@@ -16,7 +16,7 @@ const customStyles: StylesConfig = {
     fontFamily: 'Mont, sans-serif',
     fontSize: '14px',
     outline: 'none',
-    width: '136px',
+    width: '128px',
     hight: '40px',
     '&:hover': {
       borderColor: '#89939A',

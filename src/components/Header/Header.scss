@@ -1,9 +1,36 @@
 $header-height-desktop: 64px;
 $header-height-tablet: 48px;
+$mainFont: Mont, sans-serif;
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 
 .header {
   display: flex;
   box-shadow: 0px 1px 0px 0px #e2e6e9;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background-color: white;
 
   li,
   a {
@@ -47,7 +74,7 @@ $header-height-tablet: 48px;
     background-size: contain;
     justify-content: center;
     align-items: center;
-    margin-inline: 24px;
+    margin-right: 24px;
     height: 100%;
     width: 100%;
 
@@ -70,6 +97,10 @@ $header-height-tablet: 48px;
     align-items: center;
     height: 100%;
     box-sizing: border-box;
+  }
+
+  &__right {
+    margin-left: auto;
   }
 
   @include on-tablet {
@@ -112,9 +143,10 @@ $header-height-tablet: 48px;
   &__link {
     display: block;
 
+    font-family: $mainFont;
     font-size: 12px;
     line-height: 14px;
-    font-weight: 800;
+    font-weight: 600;
 
     text-transform: uppercase;
     color: #89939a;
@@ -155,17 +187,8 @@ $header-height-tablet: 48px;
 
 .icons {
   display: flex;
-  box-shadow: -1px 0 0 0 #e2e6e9;
-
-  @include on-tablet {
-    padding: 16px;
-    gap: 32px;
-  }
-
-  @include on-desktop {
-    gap: 48px;
-    padding: 24px;
-  }
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 639px) {
     display: none;
@@ -182,12 +205,33 @@ $header-height-tablet: 48px;
     list-style: none;
     text-decoration: none;
     background-image: url(../Header/img/heartLike.svg);
+    padding: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid #E2E6E9;
+    box-sizing: border-box;
+    border-right: none;
   }
 
   &--cart {
     list-style: none;
     text-decoration: none;
     background-image: url(../Header/img/cart.svg);
+    padding: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid #E2E6E9;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 1200px) {
+    &--heart {
+      padding: 24px;
+    }
+
+    &--cart {
+      padding: 24px;
+    }
   }
 }
 
@@ -203,7 +247,6 @@ $header-height-tablet: 48px;
     height: 24px;
     padding: 16px;
     cursor: pointer;
-
     &-link {
       display: flex;
       background-image: url(./menu.svg);
@@ -211,14 +254,6 @@ $header-height-tablet: 48px;
       background-size: contain;
       height: 100%;
       width: 100%;
-    }
-
-    span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: black;
-      transition: all 0.3s;
     }
   }
 }
