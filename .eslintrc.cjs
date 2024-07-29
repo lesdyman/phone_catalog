@@ -34,6 +34,8 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'no-shadow': 'off',
+    'no-plusplus': 'off',
+    'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-vars': [
       'error',

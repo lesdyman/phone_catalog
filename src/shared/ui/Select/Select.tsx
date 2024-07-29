@@ -3,6 +3,8 @@ import Select, { StylesConfig } from 'react-select';
 
 interface Props {
   option: object[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleChange: (selected: any, actionMeta: any) => void;
 }
 
 const customStyles: StylesConfig = {
@@ -14,7 +16,7 @@ const customStyles: StylesConfig = {
     fontFamily: 'Mont, sans-serif',
     fontSize: '14px',
     outline: 'none',
-    width: '136px',
+    width: '128px',
     hight: '40px',
     '&:hover': {
       borderColor: '#89939A',
@@ -42,6 +44,21 @@ const customStyles: StylesConfig = {
   }),
 };
 
-export const SelectComponent: React.FC<Props> = ({ option }) => (
-  <Select styles={customStyles} options={option} defaultValue={option[0]} />
-);
+export const SelectComponent: React.FC<Props> = ({ option, handleChange }) => {
+  const defaultOption = option[0];
+
+  const modifiedOptions = option.map((opt) => ({
+    ...opt,
+    isDisabled: opt === defaultOption,
+  }));
+
+  return (
+    <Select
+      styles={customStyles}
+      options={modifiedOptions}
+      defaultValue={option[0]}
+      isSearchable={false}
+      onChange={handleChange}
+    />
+  );
+};

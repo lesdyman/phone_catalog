@@ -2,7 +2,7 @@ import { Device } from '../types/Device';
 import { FetchOption } from '../types/FetchOption';
 import { Product } from '../types/Product';
 
-const BASE_URL = 'http://localhost:5173/api/';
+const BASE_URL = 'https://lesdyman.github.io/lets_try/';
 
 export const get = async <T>(url: string): Promise<T> => {
   const fullURL = `${BASE_URL + url}.json`;
@@ -15,7 +15,7 @@ export const get = async <T>(url: string): Promise<T> => {
   return response.json() as Promise<T>;
 };
 
-export const getPhones = get<Device>(FetchOption.Phones);
-export const getTablets = get<Device>(FetchOption.Tablets);
-export const getAccessories = get<Device>(FetchOption.Accessories);
-export const getProducts = get<Product>(FetchOption.Products);
+export const getPhones = () => get<Device[]>(FetchOption.Phones);
+export const getTablets = () => get<Device[]>(FetchOption.Tablets);
+export const getAccessories = () => get<Device[]>(FetchOption.Accessories);
+export const getProducts = () => get<Product[]>(FetchOption.Products);
