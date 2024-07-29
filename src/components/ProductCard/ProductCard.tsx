@@ -17,8 +17,8 @@ export const ProductCard: React.FC<Props> = ({ phone }) => (
     <h2 className="product_name">{phone.name}</h2>
 
     <div className="product_price">
-      <p className="product_price__discount">{phone.price}</p>
-      <p className="product_price__regular">{phone.fullPrice}</p>
+      <p className="product_price__discount">{`$${phone.price}`}</p>
+      <p className="product_price__regular">{`$${phone.fullPrice}`}</p>
     </div>
 
     <hr className="product_divider" />

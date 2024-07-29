@@ -8,7 +8,10 @@ export const Header: React.FC = () => {
       <div className="container">
         <div className="header__left">
           <a href="home" className="header__logo">
-            <img src="./src/components/Header/logo.svg" alt="Nice Gadgets logo" />
+            <img
+              src="./src/components/Header/logo.svg"
+              alt="Nice Gadgets logo"
+            />
           </a>
           <nav>
             <ul className="nav__list">
@@ -46,17 +49,16 @@ export const Header: React.FC = () => {
               </li>
             </ul>
           </nav>
-        </div>
 
-        <div className="header__right">
-          <div className="icons">
-            <a href="heart" className="icon icon--heart" aria-label="Heart" />
-            <a href="cart" className="icon icon--cart" aria-label="Cart" />
+          <div className="header__right">
+            <div className="icons">
+              <a href="heart" className="icon icon--heart" aria-label="Heart" />
+              <a href="cart" className="icon icon--cart" aria-label="Cart" />
+            </div>
           </div>
-        </div>
-
-        <div className="burger-menu">
-          <img src="./src/components/Header/img/menu.svg" alt="Menu" />
+          <div className="burger-menu">
+            <img src="./src/components/Header/img/menu.svg" alt="Menu" />
+          </div>
         </div>
       </div>
     </header>

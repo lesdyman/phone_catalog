@@ -227,7 +227,7 @@ $mainFont: Mont, sans-serif;
       border-color: #313237;
     }
 
-    &:focus {
+    &:active {
       border-color: #313237;
       background-color: #070e31;
       color: #ffffff;
@@ -262,12 +262,12 @@ $mainFont: Mont, sans-serif;
 
 @media (max-width: 930px) {
   .component__container {
-    width: 476px;
+    width: 570px;
   }
 
   .component__list {
     grid-template-columns: repeat(2, 1fr);
-    width: 476px;
+    width: 570px;
   }
 
   .example {
