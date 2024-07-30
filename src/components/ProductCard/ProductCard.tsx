@@ -3,7 +3,13 @@ import './ProductCard.scss';
 import { Device } from '../../types/Device';
 
 export const ProductCard: React.FC<Device> = ({
-  images, name, priceDiscount, priceRegular, screen, capacity, ram,
+  images,
+  name,
+  priceDiscount,
+  priceRegular,
+  screen,
+  capacity,
+  ram,
 }) => (
   <div className="product">
     <img src={images[0]} alt={name} className="product_images" />

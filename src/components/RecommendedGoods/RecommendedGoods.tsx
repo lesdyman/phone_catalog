@@ -51,16 +51,41 @@ export const RecommendedGoods: React.FC = () => {
       <div className="recommended">
         <h1 className="recommended_title">You may also like</h1>
         <div className="recommended_buttons">
-          <button className="recommended_arrow" type="button" disabled={isDisabledBack} onClick={handlePrevClick}>
-            <img className="recommended_arrow__left-default" src="/Icons/Chevron (Arrow Left).svg" alt="arrow left default" />
-            <img className="recommended_arrow__left" src="/Icons/Chevron (Arrow Right)Dark.svg" alt="arrow left" />
+          <button
+            className="recommended_arrow"
+            type="button"
+            disabled={isDisabledBack}
+            onClick={handlePrevClick}
+          >
+            <img
+              className="recommended_arrow__left-default"
+              src="/Icons/Chevron (Arrow Left).svg"
+              alt="arrow left default"
+            />
+            <img
+              className="recommended_arrow__left"
+              src="/Icons/Chevron (Arrow Right)Dark.svg"
+              alt="arrow left"
+            />
           </button>
-          <button className="recommended_arrow" type="button" disabled={isDisabledNext} onClick={handleNextClick}>
-            <img className="recommended_arrow__right-default" src="/Icons/Chevron (Arrow Left).svg" alt="arrow right default" />
-            <img className="recommended_arrow__right" src="/Icons/Chevron (Arrow Right)Dark.svg" alt="arrow right" />
+          <button
+            className="recommended_arrow"
+            type="button"
+            disabled={isDisabledNext}
+            onClick={handleNextClick}
+          >
+            <img
+              className="recommended_arrow__right-default"
+              src="/Icons/Chevron (Arrow Left).svg"
+              alt="arrow right default"
+            />
+            <img
+              className="recommended_arrow__right"
+              src="/Icons/Chevron (Arrow Right)Dark.svg"
+              alt="arrow right"
+            />
           </button>
         </div>
-
       </div>
 
       <div className="goods">
