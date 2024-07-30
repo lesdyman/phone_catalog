@@ -35,7 +35,7 @@ $mainFont: Mont, sans-serif;
 .backButton {
   width: 50px;
   height: 16px;
-  background-image: url('../../../public/Icons/Chevron\ \(Arrow\ Left\).svg');
+  background-image: url('/Icons/Chevron\ \(Arrow\ Left\).svg');
   background-position: left;
   background-repeat: no-repeat;
   text-align: right;
@@ -52,7 +52,7 @@ $mainFont: Mont, sans-serif;
 
 .backButton:hover {
   color: #313237;
-  background-image: url('../../../public/Icons/Chevron\ \(Arrow\ Right\)Dark.svg');
+  background-image: url('Icons/Chevron\ \(Arrow\ Right\)Dark.svg');
 }
 
 .title {
@@ -81,7 +81,7 @@ $mainFont: Mont, sans-serif;
 }
 
 .NewExample {
-  background-image: url('../../../public/img/product-not-found.png');
+  background-image: url('/img/product-not-found.png');
   background-repeat: no-repeat;
   width: 752px;
   height: 128px;
@@ -190,7 +190,7 @@ $mainFont: Mont, sans-serif;
 .doneLogo {
   width: 200px;
   height: 200px;
-  background-image: url('../../../public/Icons/done-round.svg');
+  background-image: url('/Icons/done-round.svg');
   background-position: center;
   background-size: contain;
 }
@@ -204,7 +204,7 @@ $mainFont: Mont, sans-serif;
   height: 20px;
   border: none;
   background-color: #fff;
-  background-image: url('../../../public/Icons/Close.svg');
+  background-image: url('/Icons/Close.svg');
   background-position: center;
   background-size: contain;
   position: absolute;
@@ -290,7 +290,7 @@ $mainFont: Mont, sans-serif;
   .doneLogo {
     width: 200px;
     height: 200px;
-    background-image: url('../../../public/Icons/done-round.svg');
+    background-image: url('/Icons/done-round.svg');
     background-position: center;
     background-size: contain;
   }

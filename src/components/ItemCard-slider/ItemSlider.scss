@@ -1,0 +1,42 @@
+.slider {
+  display: flex;
+  gap: 16px;
+  height: 464px;
+
+  &__main-photo {
+    height: 100%;
+    width: 368px;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.3s ease-in-out;
+      opacity: 1;
+
+      &.hidden {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__preview-pictures {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &-img {
+      height: 80px;
+      width: 80px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.3s;
+      padding-top: 5px;
+
+      &.selected {
+        transform: scale(1.2);
+        z-index: 1;
+      }
+    }
+  }
+}

@@ -1,13 +1,27 @@
-import React, {
-  useState, ReactNode, useMemo,
-} from 'react';
+import React, { useState, ReactNode, useMemo, useEffect } from 'react';
 import { CartItem } from '../types/CartItem';
-import { CartContext } from './cartContext';
+import { CartContext } from './CartContext';
+
+const saveCartToLocalStorage = (cart: CartItem[]) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+const loadCartFromLocalStorage = (): CartItem[] => {
+  const storedCart = localStorage.getItem('cart');
+  if (storedCart) {
+    return JSON.parse(storedCart);
+  }
+  return []; // Повертає пустий масив, якщо в localStorage нічого не збережено
+};
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(loadCartFromLocalStorage);
+
+  useEffect(() => {
+    saveCartToLocalStorage(cart);
+  }, [cart]);
 
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
