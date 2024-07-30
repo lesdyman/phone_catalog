@@ -27,6 +27,18 @@
   margin-bottom: 24px;
   margin-left: 152px;
 
+  @media (min-width: 320px) and (max-width: 639px) {
+    margin-top: 56px;
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+
+  @media (min-width: 640px) and (max-width: 1199px) {
+    margin-top: 64px;
+    margin-right: 24px;
+    margin-left: 24px;
+  }
+
   &_title {
     margin: 0;
     font-size: 32px;
@@ -82,9 +94,51 @@
 
 .goods {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  overflow-x: hidden;
+  padding: 0 16px;
+  box-sizing: border-box;
   gap: 16px;
-  width: 100%;
+}
+
+.product {
+  flex: 0 0 auto;
+  width: 272px;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--color-elements);
+  border-radius: 1px;
+  background-color: var(--color-white);
+  overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+  .goods {
+    padding-left: 16px;
+  }
+
+  .product {
+    width: calc(50% - 8px);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .goods {
+    padding-left: 16px;
+  }
+
+  .product {
+    width: calc(33.33% - 16px);
+  }
+}
+
+@media (min-width: 1199px) {
+  .goods {
+    padding-left: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product {
+    width: calc(25% - 16px);
+  }
 }

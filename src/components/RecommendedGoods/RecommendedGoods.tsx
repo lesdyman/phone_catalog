@@ -22,14 +22,37 @@ export const RecommendedGoods: React.FC = () => {
     fetchPhones();
   }, []);
 
+  const getVisibleItems = () => {
+    if (window.innerWidth <= 480) {
+      return 2;
+    }
+
+    if (window.innerWidth <= 768) {
+      return 3;
+    }
+
+    return 4;
+  };
+
+  const getItemsPerPage = () => {
+    const visibleItems = getVisibleItems();
+
+    return visibleItems + 0.5;
+  };
+
+  const itemsPerPage = getItemsPerPage();
+  const itemsRemaining = phones.length - (currentIndex + itemsPerPage);
+
   const isDisabledBack = currentIndex <= 0;
-  const isDisabledNext = currentIndex >= phones.length - 4;
+  const isDisabledNext = itemsRemaining <= 0;
 
   const moveSlides = (direction: number) => {
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex + direction;
       if (newIndex < 0) return 0;
-      if (newIndex > phones.length) return phones.length - 1;
+      if (newIndex > phones.length) {
+        return phones.length - 1;
+      }
       return newIndex;
     });
   };
@@ -89,7 +112,7 @@ export const RecommendedGoods: React.FC = () => {
       </div>
 
       <div className="goods">
-        {phones.slice(currentIndex, currentIndex + 4).map((phone) => (
+        {phones.slice(currentIndex, currentIndex + getItemsPerPage()).map((phone) => (
           <ProductCard
             key={phone.id}
             id={phone.id}

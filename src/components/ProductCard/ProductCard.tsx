@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProductCard.scss';
+import '../RecommendedGoods/RecommendedGoods.scss';
 import { Device } from '../../types/Device';
 
 export const ProductCard: React.FC<Device> = ({
