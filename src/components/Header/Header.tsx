@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './index.scss';
 import React from 'react';
+import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 
 export const Header: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ export const Header: React.FC = () => {
         <div className="header__left">
           <a href="home" className="header__logo">
             <img
-              src="./src/components/Header/logo.svg"
+              src="./src/components/Header/img/logo.svg"
               alt="Nice Gadgets logo"
             />
           </a>
@@ -55,9 +56,8 @@ export const Header: React.FC = () => {
               <a href="heart" className="icon icon--heart" aria-label="Heart" />
               <a href="cart" className="icon icon--cart" aria-label="Cart" />
             </div>
-          </div>
-          <div className="burger-menu">
-            <img src="./src/components/Header/img/menu.svg" alt="Menu" />
+
+            <BurgerMenu />
           </div>
         </div>
       </div>
