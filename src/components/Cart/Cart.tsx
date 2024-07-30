@@ -1,50 +1,58 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Cart.scss';
+import { CartContext } from '../../utils/CartContext';
+import { CartItem } from '../CartItem/CartItem';
 
 export const Cart = () => {
   const [orderDone, setOrderDone] = useState(false);
 
-  function goBack() {
-    window.history.back();
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error('Error has occured with context');
   }
 
-  function goToHomePage() {
-    document.body.style.overflow = '';
-    window.location.href = '/';
-  }
+  const { cart } = context;
 
-  function orderAccept() {
-    document.body.style.overflow = 'hidden';
-    setOrderDone(true);
-  }
+  const calculatePrice = () => {
+    return cart.reduce((acc, item) => {
+      const newAcc = acc + item.price * item.quantity;
+      return newAcc;
+    }, 0);
+  };
+
+  const calculateQuantity = () => {
+    return cart.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+  };
 
   return (
     <div className="cart">
       <div className="container">
-        <button type="button" className="backButton" onClick={goBack}>
+        <button
+          type="button"
+          className="backButton"
+          onClick={() => window.history.back()}
+        >
           Back
         </button>
         <h1 className="title">Cart</h1>
         <div className="interface">
           <div className="cartGrid">
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
-            <div className="NewExample" />
+            {cart.map((item) => (
+              <CartItem key={item.id} product={item} />
+            ))}
           </div>
           <div className="orderInterface">
-            <h1 className="totalPrice">$2657</h1>
-            <div className="itemsCount">Total for 3 items</div>
+            <h1 className="totalPrice">{`$${calculatePrice()}`}</h1>
+            <div className="itemsCount">{`Total for ${calculateQuantity()} items`}</div>
             <div className="line" />
-            <button type="button" className="checkout" onClick={orderAccept}>
+            <button
+              type="button"
+              className="checkout"
+              onClick={() => setOrderDone(true)}
+            >
               Checkout
             </button>
           </div>
@@ -61,7 +69,11 @@ export const Cart = () => {
             <button
               type="button"
               className="homeButton"
-              onClick={goToHomePage}
+              aria-label="Home"
+              onClick={() => {
+                document.body.style.overflow = '';
+                window.location.href = '/';
+              }}
             />
           </div>
         </div>

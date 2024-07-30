@@ -31,6 +31,7 @@ module.exports = {
       },
     ],
     'arrow-body-style': 'off',
+    'object-curly-newline': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'no-shadow': 'off',

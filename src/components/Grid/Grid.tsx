@@ -140,9 +140,7 @@ export const Grid = () => {
           <h1 className="component__title">Mobile phones</h1>
         </div>
         <div className="component__models-number">
-          <p>
-            {`${allPhones.length} models`}
-          </p>
+          <p>{`${allPhones.length} models`}</p>
         </div>
         <div className="component__list-params list-params">
           <span className="list-params__sort-by">
