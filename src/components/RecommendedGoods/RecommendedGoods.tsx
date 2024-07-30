@@ -112,30 +112,32 @@ export const RecommendedGoods: React.FC = () => {
       </div>
 
       <div className="goods">
-        {phones.slice(currentIndex, currentIndex + getItemsPerPage()).map((phone) => (
-          <ProductCard
-            key={phone.id}
-            id={phone.id}
-            category={phone.category}
-            namespaceId={phone.namespaceId}
-            name={phone.name}
-            capacityAvailable={phone.capacityAvailable}
-            capacity={phone.capacity}
-            priceRegular={phone.priceRegular}
-            priceDiscount={phone.priceDiscount}
-            colorsAvailable={phone.colorsAvailable}
-            color={phone.color}
-            images={phone.images}
-            description={phone.description}
-            screen={phone.screen}
-            resolution={phone.resolution}
-            processor={phone.processor}
-            ram={phone.ram}
-            camera={phone.camera}
-            zoom={phone.zoom}
-            cell={phone.cell}
-          />
-        ))}
+        {phones
+          .slice(currentIndex, currentIndex + getItemsPerPage())
+          .map((phone) => (
+            <ProductCard
+              key={phone.id}
+              id={phone.id}
+              category={phone.category}
+              namespaceId={phone.namespaceId}
+              name={phone.name}
+              capacityAvailable={phone.capacityAvailable}
+              capacity={phone.capacity}
+              priceRegular={phone.priceRegular}
+              priceDiscount={phone.priceDiscount}
+              colorsAvailable={phone.colorsAvailable}
+              color={phone.color}
+              images={phone.images}
+              description={phone.description}
+              screen={phone.screen}
+              resolution={phone.resolution}
+              processor={phone.processor}
+              ram={phone.ram}
+              camera={phone.camera}
+              zoom={phone.zoom}
+              cell={phone.cell}
+            />
+          ))}
       </div>
     </>
   );
