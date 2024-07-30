@@ -1,34 +1,17 @@
 import React from 'react';
 import './ProductCard.scss';
+import { Device } from '../../types/Device';
 
-type Product = {
-  images: string;
-  name: string;
-  priceRegular: string;
-  priceDiscount: string;
-  screen: string;
-  capacity: string;
-  ram: string;
-};
-
-const product: Product = {
-  images: 'img/phones/apple-iphone-14-pro/gold/00.webp',
-  name: 'Apple iPhone 14 Pro 1TB Gold',
-  priceRegular: '$1740',
-  priceDiscount: '$1520',
-  screen: '6.1" OLED',
-  capacity: '1 TB',
-  ram: '6 GB',
-};
-
-export const ProductCard: React.FC = () => (
+export const ProductCard: React.FC<Device> = ({
+  images, name, priceDiscount, priceRegular, screen, capacity, ram,
+}) => (
   <div className="product">
-    <img src={product.images} alt={product.name} className="product_images" />
-    <h2 className="product_name">{product.name}</h2>
+    <img src={images[0]} alt={name} className="product_images" />
+    <h2 className="product_name">{name}</h2>
 
     <div className="product_price">
-      <p className="product_price__discount">{product.priceDiscount}</p>
-      <p className="product_price__regular">{product.priceRegular}</p>
+      <p className="product_price__discount">{priceDiscount}</p>
+      <p className="product_price__regular">{priceRegular}</p>
     </div>
 
     <hr className="product_divider" />
@@ -36,17 +19,17 @@ export const ProductCard: React.FC = () => (
     <div className="product_specs">
       <div className="product_specs__item">
         <p className="product_specs__label">Screen</p>
-        <p className="product_specs__value">{product.screen}</p>
+        <p className="product_specs__value">{screen}</p>
       </div>
 
       <div className="product_specs__item">
         <p className="product_specs__label">Capacity</p>
-        <p className="product_specs__value">{product.capacity}</p>
+        <p className="product_specs__value">{capacity}</p>
       </div>
 
       <div className="product_specs__item">
         <p className="product_specs__label">RAM</p>
-        <p className="product_specs__value">{product.ram}</p>
+        <p className="product_specs__value">{ram}</p>
       </div>
     </div>
 
