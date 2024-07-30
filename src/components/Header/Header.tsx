@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
           <div className="header__right">
             <div className="icons">
               <a href="heart" className="icon icon--heart" aria-label="Heart" />
-              <a href="cart" className="icon icon--cart" aria-label="Cart" />
+              <a href="/#cart" className="icon icon--cart" aria-label="Cart" />
             </div>
           </div>
           <div className="burger-menu">

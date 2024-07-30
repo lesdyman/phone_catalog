@@ -43,7 +43,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => (
     <div className="product_button">
       <button type="button" className="product_button__add">
         <p className="product_button__text product_button__text-add">
-          Add to card
+          Add to Cart
         </p>
         <p className="product_button__text product_button__text-added">Added</p>
       </button>
