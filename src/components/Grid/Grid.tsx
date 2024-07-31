@@ -1,7 +1,5 @@
 import classNames from 'classnames';
-import {
-  useCallback, useEffect, useRef, useState,
-} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SelectComponent } from '../../shared/ui/Select/Select';
 import './Grid.scss';
 import { getProducts } from '../../utils/api';
@@ -21,16 +19,11 @@ const onPageCountOptions = [
   { value: '30', label: '30' },
 ];
 
-const PAGES_DEFAULT = [1, 2, 3, 4];
-
 export const Grid = () => {
   const [allPhones, setAllPhones] = useState<Product[]>([]);
   const [displayedPhones, setDisplayedPhones] = useState<Product[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(40);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pagesOnScreen, setPagesOnScreen] = useState<number[]>(PAGES_DEFAULT);
-
-  const topRef = useRef<HTMLDivElement>(null);
 
   const loadPhones = async () => {
     try {
@@ -54,28 +47,30 @@ export const Grid = () => {
 
   useEffect(() => {
     updateDisplayedPhones();
-  }, [updateDisplayedPhones, pagesOnScreen]);
+  }, [updateDisplayedPhones]);
 
   const handleItemsPerPageChange = (selectedOption: { value: string }) => {
-    const newItemsPerPage = parseInt(selectedOption.value, 10);
-    setItemsPerPage(newItemsPerPage);
+    setItemsPerPage(parseInt(selectedOption.value, 10));
     setCurrentPage(1);
-    setPagesOnScreen([1, 2, 3, 4]);
   };
 
   const handleSortByYear = (selectedOption: { value: string }) => {
     const select = selectedOption.value;
-    const sortedPhones = [...allPhones];
 
-    if (select === 'newest') {
-      sortedPhones.sort((a, b) => b.year - a.year);
-    } else if (select === 'oldest') {
-      sortedPhones.sort((a, b) => a.year - b.year);
+    if (select === SortOptions[0].value) {
+      return;
     }
-
-    setAllPhones(sortedPhones);
-    setCurrentPage(1);
-    setPagesOnScreen([1, 2, 3, 4]);
+    const itemsToSort = [...allPhones];
+    const sorted = itemsToSort.sort((item1, item2) => {
+      if (select === 'newest') {
+        return item2.year - item1.year;
+      }
+      if (select === 'oldest') {
+        return item1.year - item2.year;
+      }
+      return 0;
+    });
+    setAllPhones(sorted);
   };
 
   const getTotalPages = (
@@ -86,49 +81,15 @@ export const Grid = () => {
     return Array.from({ length: pageCount }, (_, i) => i + 1);
   };
 
-  const handlePaginationClick = (pageNumber: number) => {
+  const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-
-    if (topRef.current) {
-      try {
-        topRef.current.scrollIntoView({ behavior: 'smooth' });
-      } catch (e) {
-        topRef.current.scrollIntoView({ behavior: 'auto' });
-      }
-    }
-
-    const totalPages = getTotalPages(allPhones, itemsPerPage);
-
-    if (pageNumber <= totalPages[totalPages.length - 1]) {
-      let startPage = 1;
-      let endPage = 4;
-
-      if (pageNumber >= 4) {
-        startPage = pageNumber - 1;
-        endPage = Math.min(startPage + 3, totalPages.length);
-      }
-
-      if (totalPages.length <= 4) {
-        startPage = 1;
-        endPage = totalPages.length;
-      } else if (endPage - startPage < 3) {
-        startPage = Math.max(1, endPage - 3);
-      }
-
-      const onDisplay = Array.from(
-        { length: endPage - startPage + 1 },
-        (_, i) => startPage + i,
-      );
-
-      setPagesOnScreen(onDisplay);
-    }
   };
 
   return (
-    <div className="component" id="top" ref={topRef}>
+    <div className="component" id="top">
       <div className="component__container">
         <div className="component__path path">
-          <a className="path__home-image" href="home">
+          <a className="path__home-image" href="/">
             <img src="/Icons/Home.svg" alt="Home icon" />
           </a>
           <div className="path__arrow">
@@ -171,16 +132,16 @@ export const Grid = () => {
             type="button"
             aria-label="back"
             disabled={currentPage === 1}
-            onClick={() => handlePaginationClick(currentPage - 1)}
+            onClick={() => handlePageChange(currentPage - 1)}
           />
-          {pagesOnScreen.map((page) => (
+          {getTotalPages(allPhones, itemsPerPage).map((page) => (
             <button
               className={classNames('nav-wrap__page', {
                 active: page === currentPage,
               })}
               type="button"
               key={page}
-              onClick={() => handlePaginationClick(page)}
+              onClick={() => handlePageChange(page)}
             >
               {page}
             </button>
@@ -192,7 +153,7 @@ export const Grid = () => {
             disabled={
               currentPage === getTotalPages(allPhones, itemsPerPage).length
             }
-            onClick={() => handlePaginationClick(currentPage + 1)}
+            onClick={() => handlePageChange(currentPage + 1)}
           />
         </div>
       </div>
