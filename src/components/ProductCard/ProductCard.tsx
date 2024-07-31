@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import './ProductCard.scss';
+// import { Device } from '../../types/Device';
+import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
 
@@ -8,6 +11,7 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const navigate = useNavigate();
   const context = useContext(CartContext);
 
   if (!context) {
@@ -16,12 +20,31 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   const { addToCart } = context;
 
+  const relocate = () => {
+    navigate(`${phone.itemId}`);
+  };
+
+  const handleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    // Тут можна додати код для обробки кліку на кнопку, наприклад, додати товар до кошика
+  };
+
   const handleAddToCart = () => {
     addToCart(phone);
   };
 
   return (
-    <div className="product">
+    <div
+      className="product"
+      role="button"
+      tabIndex={0}
+      onClick={relocate}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.cursor = 'pointer';
+      }}
+    >
       <img
         src={phone.image}
         alt={phone.name}
@@ -57,10 +80,13 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         <button
           type="button"
           className="product_button__add"
-          onClick={handleAddToCart}
+          onClick={(e) => {
+            handleButtonClick(e);
+            handleAddToCart();
+          }}
         >
           <p className="product_button__text product_button__text-add">
-            Add to Cart
+            Add to cart
           </p>
           <p className="product_button__text product_button__text-added">
             Added
@@ -70,6 +96,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           type="button"
           aria-label="Like"
           className="product_button__like"
+          onClick={handleButtonClick}
         >
           <img
             className="product_button__like-image product_button__like-image-white"
