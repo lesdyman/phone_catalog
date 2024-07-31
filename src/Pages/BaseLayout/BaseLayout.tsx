@@ -199,7 +199,7 @@ export const BaseLayout = () => {
             <div className="breakLine" />
 
             {phone?.description.map((el) => (
-              <div className="general">
+              <div key={el.title} className="general">
                 <h1 className="infoHead">{el.title}</h1>
                 <div className="infoFilling">
                   {el.text.map((text) => (
