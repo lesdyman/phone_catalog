@@ -192,6 +192,14 @@ $main-font: Mont, sans-serif;
   border-radius: 0;
   box-sizing: border-box;
   margin-right: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.added {
+  background-color: white;
+  color: #27AE60;
+  border: 1px solid #E2E6E9;
 }
 
 .addToCart:hover {

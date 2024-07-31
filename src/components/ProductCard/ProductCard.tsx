@@ -18,7 +18,9 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     throw new Error('CartContext must be used within a CartProvider');
   }
 
-  const { addToCart } = context;
+  const { cart, addToCart } = context;
+
+  const inCart = cart.find((el) => el.itemId === phone.itemId);
 
   const relocate = () => {
     navigate(`${phone.itemId}`);
@@ -85,12 +87,15 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
             handleAddToCart();
           }}
         >
-          <p className="product_button__text product_button__text-add">
-            Add to cart
-          </p>
-          <p className="product_button__text product_button__text-added">
-            Added
-          </p>
+          {inCart?.itemId === phone.itemId ? (
+            <p className="product_button__text product_button__text-added">
+              Added
+            </p>
+          ) : (
+            <p className="product_button__text product_button__text-add">
+              Add to cart
+            </p>
+          )}
         </button>
         <button
           type="button"
