@@ -13,7 +13,7 @@ export const App: React.FC = () => (
   <Router>
     <div className="wrapper">
       <Header />
-      <main>
+      <main className="content">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/phones" element={<PhonesPage />} />
