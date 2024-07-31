@@ -24,6 +24,7 @@ $main-font: Mont, sans-serif;
 .baseLayout {
   display: flex;
   justify-content: center;
+  font-family: $main-font;
 }
 
 .baseContainer {
