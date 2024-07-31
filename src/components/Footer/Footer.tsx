@@ -25,9 +25,11 @@ export const Footer: React.FC = () => {
   }, []);
 
   return (
+    <>
+    <hr className="footer_divider" />
     <footer className="footer">
       <a href="/home" className="footer__logo-link">
-        <img src="/img/logo.png" alt="logo" className="footer__logo" />
+        <img src="/Icons/Logo.svg" alt="logo" className="footer__logo" />
       </a>
       <div className="footer__links">
         <NavLink
@@ -44,15 +46,16 @@ export const Footer: React.FC = () => {
         </NavLink>
       </div>
       <div className="back-to-top">
-        <span className="footer__item back-to-top__text">Back to top</span>
-        <a className="back-to-top__link" href="#top">
+        <span className="back-to-top__text">Back to top</span>
+        <a className="back-to-top__link" href="#/">
           <img
-            src="/img/slider-button.png"
+            src="/Icons/Chevron (Arrow Right)Dark.svg"
             alt="slider-button"
-            className="back-to-top__logo"
+            className="back-to-top__image"
           />
         </a>
       </div>
     </footer>
-  );
+  </>
+);
 };

@@ -1,0 +1,147 @@
+:root {
+  --font-family: 'Mont', sans-serif;
+
+  --color-primary: #313237;
+  --color-secondary: #89939a;
+  --color-elements: #e2e6e9;
+  --color-icons: #b4bdc3;
+  --color-white: #ffffff;
+  --color-green: #27ae60;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.recommended {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 80px;
+  margin-right: 152px;
+  margin-bottom: 24px;
+  margin-left: 152px;
+
+  @media (min-width: 320px) and (max-width: 639px) {
+    margin-top: 56px;
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+
+  @media (min-width: 640px) and (max-width: 1199px) {
+    margin-top: 64px;
+    margin-right: 24px;
+    margin-left: 24px;
+  }
+
+  &_title {
+    margin: 0;
+    font-size: 32px;
+    line-height: 41px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  &_arrow {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    margin-right: 16px;
+    border: 1px solid var(--color-icons);
+    background-color: var(--color-white);
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid var(--color-primary);
+    }
+
+    &:disabled {
+      border: 1px solid var(--color-elements);
+      cursor: not-allowed;
+    }
+
+    &:disabled .recommended_arrow__left {
+      display: none;
+    }
+
+    &:not(:disabled) .recommended_arrow__left-default {
+      display: none;
+    }
+
+    &__right {
+      transform: rotate(180deg);
+
+      &-default {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:disabled .recommended_arrow__right {
+      display: none;
+    }
+
+    &:not(:disabled) .recommended_arrow__right-default {
+      display: none;
+    }
+  }
+}
+
+.goods {
+  display: flex;
+  overflow-x: hidden;
+  padding: 0 16px;
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+.product {
+  flex: 0 0 auto;
+  width: 272px;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--color-elements);
+  border-radius: 1px;
+  background-color: var(--color-white);
+}
+
+@media (max-width: 480px) {
+  .goods {
+    padding-left: 16px;
+  }
+
+  .product {
+    width: calc(50% - 8px);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .goods {
+    padding-left: 16px;
+  }
+
+  .product {
+    width: calc(33.33% - 16px);
+  }
+}
+
+@media (min-width: 1199px) {
+  .goods {
+    padding-left: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product {
+    width: calc(25% - 16px);
+  }
+}
