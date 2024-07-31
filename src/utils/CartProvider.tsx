@@ -11,7 +11,7 @@ const loadCartFromLocalStorage = (): CartItem[] => {
   if (storedCart) {
     return JSON.parse(storedCart);
   }
-  return []; // Повертає пустий масив, якщо в localStorage нічого не збережено
+  return [];
 };
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
