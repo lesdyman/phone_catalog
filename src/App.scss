@@ -6,4 +6,11 @@
 
 .content {
   flex: 1;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  // overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
 }

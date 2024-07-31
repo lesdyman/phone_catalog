@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Footer.scss';
 
-export const Footer: React.FC = () => (
-  <>
+export const Footer: React.FC = () => {
+  const addScrollToTopHandler = () => {
+    const link = document.querySelector('.back-to-top__link');
+
+    if (!link) return undefined;
+
+    const handleScroll = (e: Event) => {
+      e.preventDefault();
+      document.querySelector('#top')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    link.addEventListener('click', handleScroll);
+
+    return () => {
+      link.removeEventListener('click', handleScroll);
+    };
+  };
+
+  useEffect(() => {
+    addScrollToTopHandler();
+  }, []);
+
+  return (
+    <>
     <hr className="footer_divider" />
     <footer className="footer">
       <a href="/home" className="footer__logo-link">
@@ -36,3 +58,4 @@ export const Footer: React.FC = () => (
     </footer>
   </>
 );
+};
