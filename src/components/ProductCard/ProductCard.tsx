@@ -5,7 +5,7 @@ import './ProductCard.scss';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
-import { useFavorites } from '../../utils/FavoriteContext';
+import { useFavorites } from '../../utils/useFavorites';
 
 type Props = {
   phone: Product;

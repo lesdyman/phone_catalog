@@ -1,6 +1,6 @@
 import { ProductCard } from '../ProductCard/ProductCard';
 import './FavouriteItems.scss';
-import { useFavorites } from '../../utils/FavoriteContext';
+import { useFavorites } from '../../utils/useFavorites';
 
 export const FavouriteItems = () => {
   const context = useFavorites();

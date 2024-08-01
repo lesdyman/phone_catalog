@@ -7,4 +7,6 @@ export interface FavoriteContextType {
   addItem: (phone: Product) => void;
 }
 
-export const FavoriteContext = createContext<FavoriteContextType | undefined>(undefined);
+export const FavoriteContext = createContext<FavoriteContextType | undefined>(
+  undefined,
+);

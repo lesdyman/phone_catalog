@@ -6,8 +6,14 @@ interface FavoritesProviderProps {
   children: ReactNode;
 }
 
-export const FavoriteProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
+export const FavoriteProvider: React.FC<FavoritesProviderProps> = ({
+  children,
+}) => {
   const value = useFavoritesProvider();
 
-  return <FavoriteContext.Provider value={value}>{children}</FavoriteContext.Provider>;
+  return (
+    <FavoriteContext.Provider value={value}>
+      {children}
+    </FavoriteContext.Provider>
+  );
 };
