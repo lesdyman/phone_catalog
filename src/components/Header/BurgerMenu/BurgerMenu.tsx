@@ -25,7 +25,7 @@ export const BurgerMenu = () => {
         <div className="burger-menu__content">
           <div className="burger-menu__header">
             <img src={logo} alt="Nice Gadgets logo" className="burger-menu__logo" />
-            <a href="/" className="burger-menu__close" onClick={() => setIsOpen(!isOpen)}>
+            <a href="#/" className="burger-menu__close" onClick={() => setIsOpen(!isOpen)}>
               <img src={closeMenu} alt="Close" />
             </a>
           </div>
