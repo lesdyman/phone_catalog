@@ -169,7 +169,11 @@ export const BaseLayout = () => {
                 className={classNames('addToCart', {
                   added: inCart?.itemId === phone?.id,
                 })}
-                onClick={() => addToCart(product)}
+                onClick={() => {
+                  if (product) {
+                    addToCart(product);
+                  }
+                }}
               >
                 {inCart?.itemId === phone?.id ? 'Added' : 'Add to cart'}
               </button>
