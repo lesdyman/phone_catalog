@@ -24,8 +24,8 @@ const PAGES_DEFAULT = [1, 2, 3, 4];
 type Props = {
   category: string;
   titlePage: string;
-  namePage: string
-}
+  namePage: string;
+};
 
 export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
