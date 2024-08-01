@@ -5,6 +5,7 @@ import './ProductCard.scss';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
+import { useFavorites } from '../../utils/FavoriteContext';
 
 type Props = {
   phone: Product;
@@ -13,6 +14,7 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ phone }) => {
   const navigate = useNavigate();
   const context = useContext(CartContext);
+  const favorites = useFavorites();
 
   if (!context) {
     throw new Error('CartContext must be used within a CartProvider');
@@ -21,14 +23,13 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   const { addToCart } = context;
 
   const relocate = () => {
-    navigate(`${phone.itemId}`);
+    navigate(`/phones/${phone.itemId}`);
   };
 
   const handleButtonClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
-    // Тут можна додати код для обробки кліку на кнопку, наприклад, додати товар до кошика
   };
 
   const handleAddToCart = () => {
@@ -96,18 +97,24 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           type="button"
           aria-label="Like"
           className="product_button__like"
-          onClick={handleButtonClick}
+          onClick={(e) => {
+            handleButtonClick(e);
+            favorites.addItem(phone);
+          }}
         >
-          <img
-            className="product_button__like-image product_button__like-image-white"
-            src="/img/icons/heartLike.svg"
-            alt="Like button icon white"
-          />
-          <img
-            className="product_button__like-image product_button__like-image-red"
-            src="/img/icons/redHeartLike.svg"
-            alt="Like button icon red"
-          />
+          {!favorites.favorites.some((el) => el.itemId === phone.itemId) ? (
+            <img
+              className="product_button__like-image product_button__like-image-white"
+              src="/img/icons/heartLike.svg"
+              alt="Like button icon white"
+            />
+          ) : (
+            <img
+              className="product_button__like-image product_button__like-image-red"
+              src="/img/icons/redHeartLike.svg"
+              alt="Like button icon red"
+            />
+          )}
         </button>
       </div>
     </div>
