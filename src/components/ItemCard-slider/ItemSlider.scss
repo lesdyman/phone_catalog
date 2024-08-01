@@ -2,6 +2,7 @@
   width: 100%;
   border: none;
   margin: auto;
+  // overflow:visible;
 }
 .slider {
   display: flex;
@@ -44,7 +45,7 @@
       }
     }
   }
-  @media (max-width:1199px) {
+  @media (max-width: 1199px) {
     &__main-photo {
       height: 287px;
     }

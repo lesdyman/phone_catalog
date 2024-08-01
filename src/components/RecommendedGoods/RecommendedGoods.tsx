@@ -6,7 +6,7 @@ import { Product } from '../../types/Product';
 
 type Props = {
   price: number | undefined;
-}
+};
 
 export const RecommendedGoods: React.FC<Props> = ({ price }) => {
   const [phones, setPhones] = useState<Product[]>([]);
@@ -18,9 +18,13 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
     }
 
     try {
-      const phonesData = (await getProducts()).filter((prod) => prod.category === 'phones');
+      const phonesData = (await getProducts()).filter(
+        (prod) => prod.category === 'phones',
+      );
 
-      const alikePhones = phonesData.filter((phone) => phone.price >= price + 100);
+      const alikePhones = phonesData.filter(
+        (phone) => phone.price <= price + 100,
+      );
       setPhones(alikePhones);
     } catch (error) {
       throw new Error('Failed to fetch phones:');
