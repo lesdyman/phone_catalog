@@ -170,7 +170,7 @@ $mainFont: Mont, sans-serif;
   align-items: center;
 }
 
-.content {
+.content-modal {
   width: 592px;
   height: 300px;
   background-color: #fff;
@@ -281,7 +281,7 @@ $mainFont: Mont, sans-serif;
     width: 240px;
   }
 
-  .content {
+  .modal-content {
     width: 50vh;
     height: 70%;
     flex-direction: column;
