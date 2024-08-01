@@ -46,7 +46,7 @@ export const BurgerMenu = () => {
             <a href="heart" className="burger-menu__icon-footer" aria-label="Heart">
               <img src="\src\components\Header\img\heartLike.svg" alt="Heart" />
             </a>
-            <a href="cart" className="burger-menu__icon-footer" aria-label="Cart">
+            <a href="/#cart" className="burger-menu__icon-footer" aria-label="Cart">
               <img src="\src\components\Header\img\cart.svg" alt="Cart" />
             </a>
           </div>
