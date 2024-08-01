@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './index.scss';
 import React from 'react';
+import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import logo from './logo.svg';
 import menu from './menu.svg';
 
@@ -10,7 +11,9 @@ export const Header: React.FC = () => {
       <div className="container">
         <div className="header__left">
           <a href="home" className="header__logo">
-            <img src={logo} alt="Nice Gadgets logo" />
+            <img
+              src={logo} alt="Nice Gadgets logo"
+            />
           </a>
           <nav>
             <ul className="nav__list">
@@ -54,9 +57,7 @@ export const Header: React.FC = () => {
               <a href="heart" className="icon icon--heart" aria-label="Heart" />
               <a href="/#cart" className="icon icon--cart" aria-label="Cart" />
             </div>
-          </div>
-          <div className="burger-menu">
-            <img src={menu} alt="Menu" />
+            <BurgerMenu />
           </div>
         </div>
       </div>
