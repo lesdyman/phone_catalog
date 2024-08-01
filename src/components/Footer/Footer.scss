@@ -1,25 +1,44 @@
+:root {
+  --font-family: 'Mont', sans-serif;
+
+  --color-primary: #313237;
+  --color-secondary: #89939a;
+  --color-elements: #e2e6e9;
+  --color-icons: #b4bdc3;
+  --color-white: #ffffff;
+  --color-green: #27ae60;
+}
+
 @font-face {
   font-family: 'Mont';
   src: url('/fonts/Mont-Bold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Regular.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Mont';
-  src: url('/fonts/Mont-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
+.footer_divider {
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: none;
+  box-shadow: 0 0 0 1px var(--color-elements);
 }
 
 .footer {
-  height: 96px;
+  // height: 96px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1136px;
-  margin-inline: auto;
   width: 100%;
+  margin: 32px auto;
 
   @media (max-width: 1200px) {
     width: 896px;
@@ -38,12 +57,14 @@
 
   &__item {
     font-size: 12px;
+    line-height: 11px;
+    font-family: var(--font-family);
+    font-weight: 800;
     text-decoration: none;
     letter-spacing: 0.04em;
-    font-family: Mont, sans-serif;
-    font-weight: bold;
-    color: #89939a;
+    color: var(--color-secondary);
   }
+
   &__link {
     text-transform: uppercase;
   }
@@ -57,8 +78,8 @@
 
   &__links {
     display: flex;
-    gap: 50px;
     justify-content: center;
+    gap: 50px;
 
     @media (max-width: 641px) {
       padding-left: 50px;
@@ -71,7 +92,6 @@
 .back-to-top {
   display: flex;
   flex-direction: row;
-  line-height: 11px;
   justify-content: center;
   align-items: center;
   // padding-right: 50px;
@@ -85,18 +105,30 @@
   }
 
   &__link {
-    cursor: pointer;
     display: flex;
     justify-content: center;
+    cursor: pointer;
   }
 
-  &__logo {
+  &__image {
+    padding: 8px;
     margin-left: 16px;
+    border: 1px solid var(--color-icons);
+    transform: rotate(90deg);
+
+    &:hover {
+      border: 1px solid var(--color-primary);
+    }
   }
 
   &__text {
+    font-size: 12px;
+    line-height: 15.34px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    color: var(--color-secondary);
     white-space: nowrap;
-    line-height: 11px;
-    font-weight: 600;
   }
 }

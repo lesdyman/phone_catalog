@@ -10,15 +10,17 @@ import { Header } from './components/Header/Header.tsx';
 import './App.scss';
 import { Cart } from './components/Cart/Cart.tsx';
 import { CartProvider } from './utils/CartProvider.tsx';
+import { BaseLayout } from './Pages/BaseLayout/BaseLayout.tsx';
 
 export const App: React.FC = () => (
   <CartProvider>
     <Router>
       <div className="wrapper">
         <Header />
-        <main>
+        <main className="content-main">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/phones/*" element={<BaseLayout />} />
             <Route path="/phones" element={<PhonesPage />} />
             <Route path="/tablets" element={<TabletsPage />} />
             <Route path="/accessories" element={<AccessoriesPage />} />

@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import './ProductCard.scss';
+// import { Device } from '../../types/Device';
+import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
 
@@ -8,20 +11,41 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const navigate = useNavigate();
   const context = useContext(CartContext);
 
   if (!context) {
     throw new Error('CartContext must be used within a CartProvider');
   }
 
-  const { addToCart } = context;
+  const { cart, addToCart } = context;
+
+  const inCart = cart.find((el) => el.itemId === phone.itemId);
+
+  const relocate = () => {
+    navigate(`${phone.itemId}`);
+  };
+
+  const handleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+  };
 
   const handleAddToCart = () => {
     addToCart(phone);
   };
 
   return (
-    <div className="product">
+    <div
+      className="product"
+      role="button"
+      tabIndex={0}
+      onClick={relocate}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.cursor = 'pointer';
+      }}
+    >
       <img
         src={phone.image}
         alt={phone.name}
@@ -57,19 +81,26 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         <button
           type="button"
           className="product_button__add"
-          onClick={handleAddToCart}
+          onClick={(e) => {
+            handleButtonClick(e);
+            handleAddToCart();
+          }}
         >
-          <p className="product_button__text product_button__text-add">
-            Add to Cart
-          </p>
-          <p className="product_button__text product_button__text-added">
-            Added
-          </p>
+          {inCart?.itemId === phone.itemId ? (
+            <p className="product_button__text product_button__text-added">
+              Added
+            </p>
+          ) : (
+            <p className="product_button__text product_button__text-add">
+              Add to cart
+            </p>
+          )}
         </button>
         <button
           type="button"
           aria-label="Like"
           className="product_button__like"
+          onClick={handleButtonClick}
         >
           <img
             className="product_button__like-image product_button__like-image-white"
