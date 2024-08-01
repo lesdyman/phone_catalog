@@ -28,7 +28,6 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
-    // Тут можна додати код для обробки кліку на кнопку, наприклад, додати товар до кошика
   };
 
   const handleAddToCart = () => {

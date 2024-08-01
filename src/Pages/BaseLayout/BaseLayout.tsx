@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useCallback, useContext, useEffect, useState } from 'react';
 import './BaseLayout.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,6 +7,8 @@ import { Device } from '../../types/Device';
 import { getPhones, getProducts } from '../../utils/api';
 import { CartContext } from '../../utils/CartContext';
 import { Product } from '../../types/Product';
+import { ItemSlider } from '../../components/ItemCard-slider/ItemSlider';
+import { RecommendedGoods } from '../../components/RecommendedGoods/RecommendedGoods';
 
 export const BaseLayout = () => {
   const [phone, setPhone] = useState<Device>();
@@ -94,7 +95,7 @@ export const BaseLayout = () => {
   };
 
   return (
-    <div className="baseLayout">
+    <div className="baseLayout" id="top">
       <div className="baseContainer">
         <div className="basePath">
           <div className="home" onClick={home} style={{ cursor: 'pointer' }} />
@@ -116,8 +117,9 @@ export const BaseLayout = () => {
 
         <h1 className="modelName">{phone?.name}</h1>
         <div className="modelContainer">
-          <div className="sliderContainer" />
-
+          <div className="sliderContainer">
+            <ItemSlider images={phone?.images} />
+          </div>
           <div className="selectModel">
             <div className="colorsAvaible">
               <p className="avaible">Avaible colors</p>
@@ -166,7 +168,11 @@ export const BaseLayout = () => {
               >
                 Add to cart
               </button>
-              <button type="button" className="addToFavorite" />
+              <button
+                type="button"
+                className="addToFavorite"
+                aria-label="addToFavorite"
+              />
             </div>
 
             <div className="info">
@@ -252,8 +258,7 @@ export const BaseLayout = () => {
             </div>
           </div>
         </div>
-
-        <div className="swiper" />
+        <RecommendedGoods price={phone?.priceDiscount} />
       </div>
     </div>
   );
