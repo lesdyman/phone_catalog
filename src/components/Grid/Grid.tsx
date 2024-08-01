@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { SelectComponent } from '../../shared/ui/Select/Select';
 import './Grid.scss';
 import { getProducts } from '../../utils/api';
@@ -21,34 +21,40 @@ const onPageCountOptions = [
 
 const PAGES_DEFAULT = [1, 2, 3, 4];
 
-export const Grid = () => {
-  const [allPhones, setAllPhones] = useState<Product[]>([]);
-  const [displayedPhones, setDisplayedPhones] = useState<Product[]>([]);
+type Props = {
+  category: string;
+  titlePage: string;
+  namePage: string
+}
+
+export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(40);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pagesOnScreen, setPagesOnScreen] = useState<number[]>(PAGES_DEFAULT);
 
   const topRef = useRef<HTMLDivElement>(null);
 
-  const loadPhones = async () => {
-    try {
-      const data = await getProducts();
-      const onlyPhones = data.filter((item) => item.category === 'phones');
-      setAllPhones(onlyPhones);
-    } catch (error) {
-      throw new Error(`Error has occurred: ${error}`);
-    }
-  };
-
   const updateDisplayedPhones = useCallback(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    setDisplayedPhones(allPhones.slice(startIndex, endIndex));
-  }, [itemsPerPage, currentPage, allPhones]);
+    setDisplayedProducts(allProducts.slice(startIndex, endIndex));
+  }, [itemsPerPage, currentPage, allProducts]);
 
   useEffect(() => {
+    const loadPhones = async () => {
+      try {
+        const data = await getProducts();
+        const onlyPhones = data.filter((item) => item.category === category);
+        setAllProducts(onlyPhones);
+      } catch (error) {
+        throw new Error(`Error has occurred: ${error}`);
+      }
+    };
+
     loadPhones();
-  }, []);
+  }, [category]);
 
   useEffect(() => {
     updateDisplayedPhones();
@@ -63,7 +69,7 @@ export const Grid = () => {
 
   const handleSortByYear = (selectedOption: { value: string }) => {
     const select = selectedOption.value;
-    const sortedPhones = [...allPhones];
+    const sortedPhones = [...allProducts];
 
     if (select === 'newest') {
       sortedPhones.sort((a, b) => b.year - a.year);
@@ -71,7 +77,7 @@ export const Grid = () => {
       sortedPhones.sort((a, b) => a.year - b.year);
     }
 
-    setAllPhones(sortedPhones);
+    setAllProducts(sortedPhones);
     setCurrentPage(1);
     setPagesOnScreen([1, 2, 3, 4]);
   };
@@ -95,7 +101,7 @@ export const Grid = () => {
       }
     }
 
-    const totalPages = getTotalPages(allPhones, itemsPerPage);
+    const totalPages = getTotalPages(allProducts, itemsPerPage);
 
     if (pageNumber <= totalPages[totalPages.length - 1]) {
       let startPage = 1;
@@ -132,13 +138,13 @@ export const Grid = () => {
           <div className="path__arrow">
             <img src="/Icons/Chevron (Arrow Right).svg" alt="Arrow right" />
           </div>
-          <div className="path__page">Phones</div>
+          <div className="path__page">{namePage}</div>
         </div>
         <div className="component__header">
-          <h1 className="component__title">Mobile phones</h1>
+          <h1 className="component__title">{titlePage}</h1>
         </div>
         <div className="component__models-number">
-          <p>{`${allPhones.length} models`}</p>
+          <p>{`${allProducts.length} models`}</p>
         </div>
         <div className="component__list-params list-params">
           <span className="list-params__sort-by">
@@ -158,8 +164,8 @@ export const Grid = () => {
         </div>
         <div className="component__wrap">
           <div className="component__list list">
-            {displayedPhones.map((phone) => (
-              <ProductCard phone={phone} key={phone.id} />
+            {displayedProducts.map((product) => (
+              <ProductCard product={product} key={product.id} />
             ))}
           </div>
         </div>
@@ -188,7 +194,7 @@ export const Grid = () => {
             type="button"
             aria-label="next"
             disabled={
-              currentPage === getTotalPages(allPhones, itemsPerPage).length
+              currentPage === getTotalPages(allProducts, itemsPerPage).length
             }
             onClick={() => handlePaginationClick(currentPage + 1)}
           />
