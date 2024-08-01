@@ -1,40 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CartItem.scss';
+import { useCart } from '../../utils/useCart';
+import { Product } from '../../types/Product';
 
-type Product = {
-  images: string;
-  name: string;
-  priceDiscount: string;
+type Props = {
+  product: Product;
 };
 
-const product: Product = {
-  images: 'img/phones/apple-iphone-14-pro/gold/00.webp',
-  name: 'Apple iPhone 14 Pro 1TB Gold',
-  priceDiscount: '$1520',
-};
+export const CartItem: React.FC<Props> = ({ product }) => {
+  const { cart } = useCart();
+  const [isMinusDisabled, setIsMinusDisabled] = useState(cart.length < 1);
+  const { changeItemCount, removeFromCart } = useCart();
 
-export const CartItem: React.FC = () => {
-  const [isMinusDisabled, setIsMinusDisabled] = useState(true);
-
-  const handlePlusClick = () => {
+  useEffect(() => {
     setIsMinusDisabled(false);
-  };
+  }, [cart]);
 
   return (
     <div className="item">
       <div className="item_desc">
-        <img
+        <button
+          type="button"
           className="item_image__cross"
-          src="/img/icons/cross.svg"
-          alt="gray cross"
-        />
+          onClick={() => removeFromCart(product.id)}
+          aria-label="Remove from cart"
+        >
+          <img src="/img/icons/cross.svg" alt="gray cross" />
+        </button>
 
         <img
-          src={product.images}
+          src={product.image}
           alt={product.name}
           className="item_image__phone"
         />
-
         <p className="item_name">{product.name}</p>
       </div>
 
@@ -44,6 +42,7 @@ export const CartItem: React.FC = () => {
             type="button"
             className="item_button item_button__subtract"
             disabled={isMinusDisabled}
+            onClick={() => changeItemCount(product.id, product.quantity - 1)}
           >
             <img
               className="item_button__image-black"
@@ -56,11 +55,11 @@ export const CartItem: React.FC = () => {
               alt="disabled minus"
             />
           </button>
-          <p className="item_count">1</p>
+          <p className="item_count">{product.quantity}</p>
           <button
             type="button"
             className="item_button item_button__add"
-            onClick={handlePlusClick}
+            onClick={() => changeItemCount(product.id, product.quantity + 1)}
           >
             <img
               className="item_button__image"
@@ -70,7 +69,7 @@ export const CartItem: React.FC = () => {
           </button>
         </div>
 
-        <h3 className="item_price">{product.priceDiscount}</h3>
+        <h3 className="item_price">{`$${product.price}`}</h3>
       </div>
     </div>
   );

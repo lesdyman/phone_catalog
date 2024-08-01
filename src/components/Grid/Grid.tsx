@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { SelectComponent } from '../../shared/ui/Select/Select';
 import './Grid.scss';
 import { getProducts } from '../../utils/api';
@@ -27,6 +27,8 @@ export const Grid = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(40);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pagesOnScreen, setPagesOnScreen] = useState<number[]>(PAGES_DEFAULT);
+
+  const topRef = useRef<HTMLDivElement>(null);
 
   const loadPhones = async () => {
     try {
@@ -85,6 +87,14 @@ export const Grid = () => {
   const handlePaginationClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
 
+    if (topRef.current) {
+      try {
+        topRef.current.scrollIntoView({ behavior: 'smooth' });
+      } catch (e) {
+        topRef.current.scrollIntoView({ behavior: 'auto' });
+      }
+    }
+
     const totalPages = getTotalPages(allPhones, itemsPerPage);
 
     if (pageNumber <= totalPages[totalPages.length - 1]) {
@@ -113,7 +123,7 @@ export const Grid = () => {
   };
 
   return (
-    <div className="component" id="top">
+    <div className="component" id="top" ref={topRef}>
       <div className="component__container">
         <div className="component__path path">
           <a className="path__home-image" href="home">
@@ -128,10 +138,7 @@ export const Grid = () => {
           <h1 className="component__title">Mobile phones</h1>
         </div>
         <div className="component__models-number">
-          <p>
-            {allPhones.length}
-            models
-          </p>
+          <p>{`${allPhones.length} models`}</p>
         </div>
         <div className="component__list-params list-params">
           <span className="list-params__sort-by">

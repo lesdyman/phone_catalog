@@ -275,18 +275,18 @@ $mainFont: Mont, sans-serif;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .component__container {
-    width: 287px;
+    width: 272px;
   }
 
   .component__list {
     grid-template-columns: repeat(1, 1fr);
-    width: 287px;
+    width: 272px;
   }
 
   .example {
-    width: 287px;
+    width: 272px;
     height: 440px;
   }
 
