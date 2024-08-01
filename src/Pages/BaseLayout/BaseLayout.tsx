@@ -258,10 +258,7 @@ export const BaseLayout = () => {
             </div>
           </div>
         </div>
-
-        <div className="swiper">
-          <RecommendedGoods price={phone?.priceDiscount} />
-        </div>
+        <RecommendedGoods price={phone?.priceDiscount} />
       </div>
     </div>
   );

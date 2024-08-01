@@ -340,12 +340,13 @@ $main-font: Mont, sans-serif;
   margin: 0;
 }
 
-.swiper {
-  width: 1136px;
-  // height: 650px;
+.swiper-recommended {
+  // width: 1136px;
+  height: 650px;
   border: 1px solid black;
   box-sizing: border-box;
   margin-bottom: 81px;
+  background-color: green;
 }
 
 @media (max-width: 1199px) {
@@ -402,7 +403,7 @@ $main-font: Mont, sans-serif;
     width: 592px;
   }
 
-  .swiper {
+  .swiper-recommended {
     // overflow: hidden;
     margin-bottom: 64px;
   }
@@ -475,8 +476,8 @@ $main-font: Mont, sans-serif;
     width: 288px;
   }
 
-  .swiper {
-    width: 440px;
+  .swiper-recommended {
+    // width: 440px;
     // height: 495px;
     margin-bottom: 56px;
   }

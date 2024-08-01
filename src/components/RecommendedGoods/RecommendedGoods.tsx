@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useLayoutEffect,
+} from 'react';
 import './RecommendedGoods.scss';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { getProducts } from '../../utils/api';
@@ -11,6 +16,10 @@ type Props = {
 export const RecommendedGoods: React.FC<Props> = ({ price }) => {
   const [phones, setPhones] = useState<Product[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [isDisabledBack, setIsDisabledBack] = useState<boolean>(false);
+  const [isDisabledNext, setIsDisabledNext] = useState<boolean>(false);
+  const [visiblePhones, setVisiblePhones] = useState<Product[]>([]);
 
   const fetchPhones = useCallback(async () => {
     if (price === undefined) {
@@ -36,28 +45,30 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
   }, [fetchPhones]);
 
   const getVisibleItems = () => {
-    if (window.innerWidth <= 480) {
-      return 2;
+    if (window.innerWidth <= 639) {
+      return 1;
     }
 
-    if (window.innerWidth <= 768) {
-      return 3;
+    if (window.innerWidth <= 1199) {
+      return 2;
     }
 
     return 4;
   };
 
-  const getItemsPerPage = () => {
-    const visibleItems = getVisibleItems();
+  useLayoutEffect(() => {
+    const updateReccomendedGoodsSlider = () => {
+      const itemsPerPage = getVisibleItems();
+      const itemsRemaining = phones.length - (currentIndex + itemsPerPage);
 
-    return visibleItems + 0.5;
-  };
-
-  const itemsPerPage = getItemsPerPage();
-  const itemsRemaining = phones.length - (currentIndex + itemsPerPage);
-
-  const isDisabledBack = currentIndex <= 0;
-  const isDisabledNext = itemsRemaining <= 0;
+      setIsDisabledBack(currentIndex <= 0);
+      setIsDisabledNext(itemsRemaining <= 0);
+      setVisiblePhones(phones.slice(currentIndex, currentIndex + itemsPerPage));
+    };
+    window.addEventListener('resize', updateReccomendedGoodsSlider);
+    updateReccomendedGoodsSlider();
+    return () => window.removeEventListener('resize', updateReccomendedGoodsSlider);
+  }, [currentIndex, phones]);
 
   const moveSlides = (direction: number) => {
     setCurrentIndex((prevIndex) => {
@@ -125,11 +136,9 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
       </div>
 
       <div className="goods">
-        {phones
-          .slice(currentIndex, currentIndex + getItemsPerPage())
-          .map((phone) => (
-            <ProductCard phone={phone} />
-          ))}
+        {visiblePhones.map((phone) => (
+          <ProductCard phone={phone} key={phone.id} />
+        ))}
       </div>
     </>
   );
