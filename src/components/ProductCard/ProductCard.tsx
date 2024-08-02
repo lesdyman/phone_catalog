@@ -50,7 +50,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       <img
         src={product.image}
         alt={product.name}
-        className="product_images list__item example"
+        className="product_images list__item"
+        // className="product_images list__item example"
       />
       <h2 className="product_name">{product.name}</h2>
 

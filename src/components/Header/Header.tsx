@@ -1,10 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import './index.scss';
-import React from 'react';
+import React, { useContext } from 'react';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import logo from './img/logo.svg';
+import { CartContext } from '../../utils/CartContext';
+import { useFavorites } from '../../utils/useFavorites';
 
 export const Header: React.FC = () => {
+  const cartContext = useContext(CartContext);
+  const favoritesContext = useFavorites();
+
   return (
     <header className="header">
       <div className="container">
@@ -51,12 +56,29 @@ export const Header: React.FC = () => {
 
           <div className="header__right">
             <div className="icons">
-              <a
-                href="/#favorites"
-                className="icon icon--heart"
-                aria-label="Heart"
-              />
-              <a href="/#cart" className="icon icon--cart" aria-label="Cart" />
+              <div className="cartAndFavoriteWrap">
+                <a
+                  href="/#favorites"
+                  className="icon icon--heart"
+                  aria-label="Heart"
+                />
+                {!!favoritesContext.favorites.length && (
+                  <div className="circle">
+                    {favoritesContext.favorites.length}
+                  </div>
+                )}
+              </div>
+              <div className="cartAndFavoriteWrap">
+                <a
+                  href="/#cart"
+                  className="icon icon--cart"
+                  aria-label="Cart"
+                />
+
+                {!!cartContext?.cart.length && (
+                  <div className="circle">{cartContext?.cart.length}</div>
+                )}
+              </div>
             </div>
             <BurgerMenu />
           </div>

@@ -1,7 +1,7 @@
 .swiper {
   width: 100%;
   border: none;
-  margin: auto;
+  // margin: auto;
   // overflow:visible;
 }
 .slider {
@@ -80,4 +80,7 @@
       }
     }
   }
+}
+.swiper-vertical {
+  height: 100%;
 }
