@@ -32,39 +32,59 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(40);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pagesOnScreen, setPagesOnScreen] = useState<number[]>(PAGES_DEFAULT);
+  const [paginationButtons, setPaginationButtons] = useState<number[]>(PAGES_DEFAULT);
 
   const topRef = useRef<HTMLDivElement>(null);
 
-  const updateDisplayedPhones = useCallback(() => {
+  const updateDisplayedItems = useCallback(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     setDisplayedProducts(allProducts.slice(startIndex, endIndex));
   }, [itemsPerPage, currentPage, allProducts]);
 
+  const updatePaginationButtons = (totalPages: number[], pageNow: number): number[] => {
+    if (totalPages.length <= 4) {
+      return totalPages;
+    }
+
+    const startPage = Math.max(pageNow - 1, 1);
+    const endPage = Math.min(startPage + 3, totalPages.length);
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  };
+
+  const getTotalPages = (
+    devices: Product[],
+    devicesPerPage: number,
+  ): number[] => {
+    const pageCount = Math.ceil(devices.length / devicesPerPage);
+    return Array.from({ length: pageCount }, (_, i) => i + 1);
+  };
+
   useEffect(() => {
-    const loadPhones = async () => {
+    const loadDevices = async () => {
       try {
         const data = await getProducts();
-        const onlyPhones = data.filter((item) => item.category === category);
-        setAllProducts(onlyPhones);
+        const onlyOfCategory = data.filter((item) => item.category === category);
+        setAllProducts(onlyOfCategory);
       } catch (error) {
         throw new Error(`Error has occurred: ${error}`);
       }
     };
 
-    loadPhones();
+    loadDevices();
   }, [category]);
 
   useEffect(() => {
-    updateDisplayedPhones();
-  }, [updateDisplayedPhones, pagesOnScreen]);
+    const totalPages = getTotalPages(allProducts, itemsPerPage);
+    setPaginationButtons(updatePaginationButtons(totalPages, currentPage));
+    updateDisplayedItems();
+  }, [allProducts, itemsPerPage, currentPage, updateDisplayedItems]);
 
-  const handleItemsPerPageChange = (selectedOption: { value: string }) => {
+  const handleItemsPerPageFilter = (selectedOption: { value: string }) => {
     const newItemsPerPage = parseInt(selectedOption.value, 10);
     setItemsPerPage(newItemsPerPage);
     setCurrentPage(1);
-    setPagesOnScreen([1, 2, 3, 4]);
   };
 
   const handleSortByYear = (selectedOption: { value: string }) => {
@@ -79,15 +99,6 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
 
     setAllProducts(sortedPhones);
     setCurrentPage(1);
-    setPagesOnScreen([1, 2, 3, 4]);
-  };
-
-  const getTotalPages = (
-    devices: Product[],
-    devicesPerPage: number,
-  ): number[] => {
-    const pageCount = Math.ceil(devices.length / devicesPerPage);
-    return Array.from({ length: pageCount }, (_, i) => i + 1);
   };
 
   const handlePaginationClick = (pageNumber: number) => {
@@ -102,30 +113,7 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
     }
 
     const totalPages = getTotalPages(allProducts, itemsPerPage);
-
-    if (pageNumber <= totalPages[totalPages.length - 1]) {
-      let startPage = 1;
-      let endPage = 4;
-
-      if (pageNumber >= 4) {
-        startPage = pageNumber - 1;
-        endPage = Math.min(startPage + 3, totalPages.length);
-      }
-
-      if (totalPages.length <= 4) {
-        startPage = 1;
-        endPage = totalPages.length;
-      } else if (endPage - startPage < 3) {
-        startPage = Math.max(1, endPage - 3);
-      }
-
-      const onDisplay = Array.from(
-        { length: endPage - startPage + 1 },
-        (_, i) => startPage + i,
-      );
-
-      setPagesOnScreen(onDisplay);
-    }
+    setPaginationButtons(updatePaginationButtons(totalPages, pageNumber));
   };
 
   return (
@@ -158,7 +146,7 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
             <p className="list-params__sort-title">Items on page</p>
             <SelectComponent
               option={onPageCountOptions}
-              handleChange={handleItemsPerPageChange}
+              handleChange={handleItemsPerPageFilter}
             />
           </span>
         </div>
@@ -177,7 +165,7 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
             disabled={currentPage === 1}
             onClick={() => handlePaginationClick(currentPage - 1)}
           />
-          {pagesOnScreen.map((page) => (
+          {paginationButtons.map((page) => (
             <button
               className={classNames('nav-wrap__page', {
                 active: page === currentPage,
