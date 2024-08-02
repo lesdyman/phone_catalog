@@ -25,8 +25,8 @@ export const FavouriteItems = () => {
         <div className="component__wrap">
           {context.favorites.length ? (
             <div className="component__list list">
-              {context.favorites.map((phone) => (
-                <ProductCard phone={phone} key={phone.id} />
+              {context.favorites.map((item) => (
+                <ProductCard product={item} key={item.id} />
               ))}
             </div>
           ) : (

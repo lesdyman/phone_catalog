@@ -103,10 +103,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           className="product_button__like"
           onClick={(e) => {
             handleButtonClick(e);
-            favorites.addItem(phone);
+            favorites.addItem(product);
           }}
         >
-          {!favorites.favorites.some((el) => el.itemId === phone.itemId) ? (
+          {!favorites.favorites.some((el) => el.itemId === product.itemId) ? (
             <img
               className="product_button__like-image product_button__like-image-white"
               src="/img/icons/heartLike.svg"

@@ -25,7 +25,9 @@ export const App: React.FC = () => (
               <Route path="/" element={<HomePage />} />
               <Route path="/phones/*" element={<BaseLayout />} />
               <Route path="/phones" element={<PhonesPage />} />
+              <Route path="/tablets/*" element={<BaseLayout />} />
               <Route path="/tablets" element={<TabletsPage />} />
+              <Route path="/accessories/*" element={<BaseLayout />} />
               <Route path="/accessories" element={<AccessoriesPage />} />
               <Route path="/favorites" element={<FavouriteItems />} />
               <Route path="/cart" element={<Cart />} />
