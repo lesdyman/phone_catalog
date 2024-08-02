@@ -5,6 +5,7 @@ import React, {
   useLayoutEffect,
 } from 'react';
 import './RecommendedGoods.scss';
+import { useLocation } from 'react-router-dom';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { getProducts } from '../../utils/api';
 import { Product } from '../../types/Product';
@@ -20,6 +21,7 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
   const [isDisabledBack, setIsDisabledBack] = useState<boolean>(false);
   const [isDisabledNext, setIsDisabledNext] = useState<boolean>(false);
   const [visiblePhones, setVisiblePhones] = useState<Product[]>([]);
+  const location = useLocation();
 
   const fetchPhones = useCallback(async () => {
     if (price === undefined) {
@@ -28,7 +30,7 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
 
     try {
       const phonesData = (await getProducts()).filter(
-        (prod) => prod.category === 'phones',
+        (prod) => prod.category === location.pathname.split('/')[1],
       );
 
       const alikePhones = phonesData.filter(
