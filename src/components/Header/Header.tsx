@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
     <header className="header">
       <div className="container">
         <div className="header__left">
-          <a href="home" className="header__logo">
+          <a href="/" className="header__logo">
             <img src={logo} alt="Nice Gadgets logo" />
           </a>
           <nav>

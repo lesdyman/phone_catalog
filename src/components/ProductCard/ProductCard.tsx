@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import './ProductCard.scss';
-// import { Device } from '../../types/Device';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
 import { useFavorites } from '../../utils/useFavorites';
 
 type Props = {
-  phone: Product;
+  product: Product;
 };
 
-export const ProductCard: React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({ product }) => {
   const navigate = useNavigate();
   const context = useContext(CartContext);
   const favorites = useFavorites();
@@ -22,10 +21,10 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   const { cart, addToCart } = context;
 
-  const inCart = cart.find((el) => el.itemId === phone.itemId);
+  const inCart = cart.find((el) => el.itemId === product.itemId);
 
   const relocate = () => {
-    navigate(`/phones/${phone.itemId}`);
+    navigate(`${product.itemId}`);
   };
 
   const handleButtonClick = (
@@ -35,7 +34,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart(phone);
+    addToCart(product);
   };
 
   return (
@@ -49,15 +48,15 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
       }}
     >
       <img
-        src={phone.image}
-        alt={phone.name}
+        src={product.image}
+        alt={product.name}
         className="product_images list__item example"
       />
-      <h2 className="product_name">{phone.name}</h2>
+      <h2 className="product_name">{product.name}</h2>
 
       <div className="product_price">
-        <p className="product_price__discount">{`$${phone.price}`}</p>
-        <p className="product_price__regular">{`$${phone.fullPrice}`}</p>
+        <p className="product_price__discount">{`$${product.price}`}</p>
+        <p className="product_price__regular">{`$${product.fullPrice}`}</p>
       </div>
 
       <hr className="product_divider" />
@@ -65,17 +64,17 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
       <div className="product_specs">
         <div className="product_specs__item">
           <p className="product_specs__label">Screen</p>
-          <p className="product_specs__value">{phone.screen}</p>
+          <p className="product_specs__value">{product.screen}</p>
         </div>
 
         <div className="product_specs__item">
           <p className="product_specs__label">Capacity</p>
-          <p className="product_specs__value">{phone.capacity}</p>
+          <p className="product_specs__value">{product.capacity}</p>
         </div>
 
         <div className="product_specs__item">
           <p className="product_specs__label">RAM</p>
-          <p className="product_specs__value">{phone.ram}</p>
+          <p className="product_specs__value">{product.ram}</p>
         </div>
       </div>
 
@@ -88,7 +87,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
             handleAddToCart();
           }}
         >
-          {inCart?.itemId === phone.itemId ? (
+          {inCart?.itemId === product.itemId ? (
             <p className="product_button__text product_button__text-added">
               Added
             </p>

@@ -137,7 +137,7 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
 
       <div className="goods">
         {visiblePhones.map((phone) => (
-          <ProductCard phone={phone} key={phone.id} />
+          <ProductCard product={phone} key={phone.id} />
         ))}
       </div>
     </>
