@@ -31,16 +31,36 @@ export const BurgerMenu = () => {
           </div>
           <ul className="burger-menu__list">
             <li className="burger-menu__item">
-              <NavLink to="/" className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}>Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}
+              >
+                Home
+              </NavLink>
             </li>
             <li className="burger-menu__item">
-              <NavLink to="/phones" className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}>Phones</NavLink>
+              <NavLink
+                to="/phones"
+                className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}
+              >
+                Phones
+              </NavLink>
             </li>
             <li className="burger-menu__item">
-              <NavLink to="/tablets" className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}>Tablets</NavLink>
+              <NavLink
+                to="/tablets"
+                className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}
+              >
+                Tablets
+              </NavLink>
             </li>
             <li className="burger-menu__item">
-              <NavLink to="/accessories" className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}>Accessories</NavLink>
+              <NavLink
+                to="/accessories"
+                className={({ isActive }) => `burger-menu__link ${isActive ? 'is-active' : ''}`}
+              >
+                Accessories
+              </NavLink>
             </li>
           </ul>
           <div className="burger-menu__footer">
