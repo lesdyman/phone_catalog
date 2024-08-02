@@ -63,21 +63,27 @@ export const HomePageSliderMain: React.FC = () => {
             </div>
           </SwiperSlide>
         </Swiper>
-        <div className={classNames(styles.swiper__prev, 'swiper__Button__Prev')}>
+        <div
+          className={classNames(styles.swiper__prev, 'swiper__Button__Prev')}
+        >
           <img
             src="/Icons/arrow-left.svg"
             alt="Prev"
             className={styles.overlayImage}
           />
         </div>
-        <div className={classNames(styles.swiper__next, 'swiper__Button__Next')}>
+        <div
+          className={classNames(styles.swiper__next, 'swiper__Button__Next')}
+        >
           <img
             src="/Icons/arrow-right.svg"
             alt="Next"
             className={styles.overlayImage}
           />
         </div>
-        <div className={classNames(styles.swiper__pagination, 'swiper-pagination')} />
+        <div
+          className={classNames(styles.swiper__pagination, 'swiper-pagination')}
+        />
       </div>
     </div>
   );

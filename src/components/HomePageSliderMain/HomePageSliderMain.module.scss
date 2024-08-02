@@ -19,7 +19,7 @@
   cursor: pointer;
   width: 14px;
   height: 4px;
-  background: #E2E6E9;
+  background: #e2e6e9;
   opacity: 1;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .swiper {
-  max-width: 320px;
+  width: 100%;
   max-height: 320px;
   margin: 0 auto;
   position: relative;
@@ -154,7 +154,7 @@
     background-position: center;
 
     &--1 {
-      background-image: url("/img/banner-iPhone14.png");
+      background-image: url('/img/banner-iPhone14.png');
 
       // @media (max-width: 1199) {
       //   background-image: url("../../images/icons/Banner.png");
@@ -166,12 +166,12 @@
     }
 
     &--2 {
-      background-image: url("/img/banner-tablets-slider.png");
+      background-image: url('/img/banner-tablets-slider.png');
       // background-position: bottom;
     }
 
     &--3 {
-      background-image: url("/img/banner-accessories.png");
+      background-image: url('/img/banner-accessories.png');
       background-size: cover;
     }
   }

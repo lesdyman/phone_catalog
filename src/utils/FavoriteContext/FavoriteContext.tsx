@@ -1,7 +1,5 @@
 import React, {
-
   FC, ReactNode, useEffect, useMemo, useState,
-
 } from 'react';
 import { Product } from '../../types/Product';
 
@@ -35,7 +33,7 @@ export const FavoriteProvider: FC<Props> = ({ children }) => {
   };
 
   const deleteProductFromFavorite = (productId: number) => {
-    setFavorite(current => [...current].filter(product => product.id !== productId));
+    setFavorite((current) => [...current].filter((product) => product.id !== productId));
   };
 
   const favoriteContextValue = useMemo(
@@ -48,9 +46,7 @@ export const FavoriteProvider: FC<Props> = ({ children }) => {
   );
 
   return (
-    <FavoriteContext.Provider
-      value={favoriteContextValue}
-    >
+    <FavoriteContext.Provider value={favoriteContextValue}>
       {children}
     </FavoriteContext.Provider>
   );
