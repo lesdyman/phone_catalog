@@ -48,11 +48,17 @@ export const Cart = () => {
         </button>
         <h1 className="title">Cart</h1>
         <div className="interface">
-          <div className="cartGrid">
-            {cart.map((item) => (
-              <CartItem key={item.id} product={item} />
-            ))}
-          </div>
+          {!context.cart.length ? (
+            <div className="noCartItems">
+              <h1 className="noCartItemsTitle">No devices in your cart</h1>
+            </div>
+          ) : (
+            <div className="cartGrid">
+              {cart.map((item) => (
+                <CartItem key={item.id} product={item} />
+              ))}
+            </div>
+          )}
           <div className="orderInterface">
             <h1 className="totalPrice">{`$${calculatePrice()}`}</h1>
             <div className="itemsCount">{`Total for ${calculateQuantity()} items`}</div>

@@ -4,6 +4,7 @@ import './ProductCard.scss';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
+import { useFavorites } from '../../utils/useFavorites';
 
 type Props = {
   product: Product;
@@ -12,6 +13,7 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const navigate = useNavigate();
   const context = useContext(CartContext);
+  const favorites = useFavorites();
 
   if (!context) {
     throw new Error('CartContext must be used within a CartProvider');
@@ -99,18 +101,24 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           type="button"
           aria-label="Like"
           className="product_button__like"
-          onClick={handleButtonClick}
+          onClick={(e) => {
+            handleButtonClick(e);
+            favorites.addItem(phone);
+          }}
         >
-          <img
-            className="product_button__like-image product_button__like-image-white"
-            src="/img/icons/heartLike.svg"
-            alt="Like button icon white"
-          />
-          <img
-            className="product_button__like-image product_button__like-image-red"
-            src="/img/icons/redHeartLike.svg"
-            alt="Like button icon red"
-          />
+          {!favorites.favorites.some((el) => el.itemId === phone.itemId) ? (
+            <img
+              className="product_button__like-image product_button__like-image-white"
+              src="/img/icons/heartLike.svg"
+              alt="Like button icon white"
+            />
+          ) : (
+            <img
+              className="product_button__like-image product_button__like-image-red"
+              src="/img/icons/redHeartLike.svg"
+              alt="Like button icon red"
+            />
+          )}
         </button>
       </div>
     </div>
