@@ -85,7 +85,6 @@
           font-size: 22px;
           line-height: 30px;
         }
-
     }
   }
      
@@ -95,6 +94,10 @@
        display: flex;
        justify-content: center;
        align-items: center;
+
+       @include on-phone {
+        display: block;
+       }
      }
 
   .new-models-container {

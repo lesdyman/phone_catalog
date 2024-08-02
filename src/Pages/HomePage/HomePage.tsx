@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomePage.scss';
 import { NavLink } from 'react-router-dom';
+import { HomePageSliderMain } from '../../components/HomePageSliderMain/HomePageSliderMain';
 
 export const HomePage: React.FC = () => (
   <div className="homepage">
@@ -8,10 +9,9 @@ export const HomePage: React.FC = () => (
       <h1 className="homepage__title-h1">Welcome to Nice Gadgets store!</h1>
     </div>
 
-    <h2 className="homepage__title-h2">Now avalible in our store</h2>
-    <section>
-      <div className="slider-container" />
-    </section>
+    <div className="slider-container">
+      <HomePageSliderMain />
+    </div>
 
     <h2 className="homepage__title-h2">Brand new models</h2>
     <section className="new-models">
