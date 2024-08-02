@@ -229,3 +229,28 @@ $mainFont: Mont, sans-serif;
     }
   }
 }
+
+.cartAndFavoriteWrap {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px white;
+  height: 14px;
+  width: 14px;
+  border: 1px solid #EB5757;
+  border-radius: 50%;
+  background-color: #EB5757;
+  color: white;
+  text-align: center;
+  line-height: 14px;
+  font-size: 9px;
+  top: 17px;
+  right: 18px;
+
+  @media (max-width: 1199px) {
+    opacity: 0;
+  }
+}
