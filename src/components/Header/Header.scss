@@ -26,7 +26,7 @@ $mainFont: Mont, sans-serif;
 
 .header {
   display: flex;
-  border: 1px solid #E2E6E9;
+  border: 1px solid #e2e6e9;
   box-sizing: border-box;
   position: sticky;
   z-index: 2;
@@ -109,7 +109,6 @@ $mainFont: Mont, sans-serif;
   height: 100%;
   box-sizing: border-box;
   transition: color 0.3s;
-
 
   &__item {
     list-style: none;
@@ -204,7 +203,7 @@ $mainFont: Mont, sans-serif;
     padding: 32px;
     background-repeat: no-repeat;
     background-position: center;
-    border-left: 1px solid #E2E6E9;
+    border-left: 1px solid #e2e6e9;
     box-sizing: border-box;
     border-right: none;
   }
@@ -216,7 +215,7 @@ $mainFont: Mont, sans-serif;
     padding: 32px;
     background-repeat: no-repeat;
     background-position: center;
-    border-left: 1px solid #E2E6E9;
+    border-left: 1px solid #e2e6e9;
     box-sizing: border-box;
   }
 
@@ -230,4 +229,3 @@ $mainFont: Mont, sans-serif;
     }
   }
 }
-
