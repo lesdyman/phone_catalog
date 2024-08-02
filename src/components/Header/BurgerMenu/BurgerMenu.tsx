@@ -1,11 +1,12 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/button-has-type */
 // BurgerMenu.jsx
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './BurgerMenu.scss';
+import logo from '../img/logo.svg';
+import menu from '../img/menu.svg';
+import closeMenu from '../img/Close.svg';
+import heartLike from '../img/heartLike.svg';
+import cart from '../img/cart.svg';
 
 export const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,22 +18,27 @@ export const BurgerMenu = () => {
 
   return (
     <div className={`burger-menu ${isOpen ? 'is-open' : ''}`}>
-      <button className="burger-menu__icon" onClick={() => setIsOpen(!isOpen)}>
-        <img src="\src\components\Header\img\menu.svg" alt="Menu" />
+      <button
+        type="button"
+        className="burger-menu__icon"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <img src={menu} alt="Menu" />
       </button>
       {isOpen && (
         <div className="burger-menu__content">
           <div className="burger-menu__header">
             <img
-              src="\src\components\Header\img\logo.svg"
+              src={logo}
               alt="Nice Gadgets logo"
               className="burger-menu__logo"
             />
             <a
+              href="#/"
               className="burger-menu__close"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <img src="\src\components\Header\img\Close.svg" alt="Close" />
+              <img src={closeMenu} alt="Close" />
             </a>
           </div>
           <ul className="burger-menu__list">
@@ -71,19 +77,19 @@ export const BurgerMenu = () => {
           </ul>
           <div className="burger-menu__footer">
             <a
-              href="heart"
+              href="#/"
               className="burger-menu__icon-footer"
               aria-label="Heart"
             >
-              <img src="\src\components\Header\img\heartLike.svg" alt="Heart" />
+              <img src={heartLike} alt="Heart" />
             </a>
-            <a
-              href="/#cart"
+            <NavLink
+              to="/cart"
               className="burger-menu__icon-footer"
               aria-label="Cart"
             >
-              <img src="\src\components\Header\img\cart.svg" alt="Cart" />
-            </a>
+              <img src={cart} alt="Cart" />
+            </NavLink>
           </div>
         </div>
       )}

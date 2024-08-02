@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import './ProductCard.scss';
-
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
