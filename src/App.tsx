@@ -8,7 +8,7 @@ import { TabletsPage } from './Pages/TabletsPage/TabletsPage.tsx';
 import { Footer } from './components/Footer/Footer.tsx';
 import { Header } from './components/Header/Header.tsx';
 import './App.scss';
-import { Cart } from './components/Cart/Cart.tsx';
+// import { Cart } from './components/Cart/Cart.tsx';
 
 export const App: React.FC = () => (
   <Router>
@@ -20,7 +20,7 @@ export const App: React.FC = () => (
           <Route path="/phones" element={<PhonesPage />} />
           <Route path="/tablets" element={<TabletsPage />} />
           <Route path="/accessories" element={<AccessoriesPage />} />
-          <Route path="/cart" element={<Cart />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>

@@ -2,7 +2,7 @@ import React, {
   useState, ReactNode, useMemo,
 } from 'react';
 import { CartItem } from '../types/CartItem';
-import { CartContext } from './cartContext';
+import { CartContext } from './CartContext';
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,

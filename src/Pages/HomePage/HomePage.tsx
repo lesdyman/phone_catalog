@@ -1,3 +1,11 @@
 import React from 'react';
+import { HomePageSliderMain } from '../../components/HomePageSliderMain/HomePageSliderMain';
 
-export const HomePage: React.FC = () => <h1>Home Page</h1>;
+import './HomePage.scss';
+
+export const HomePage: React.FC = () => (
+  <>
+    <h1>Home Page</h1>
+    <HomePageSliderMain />
+  </>
+);

@@ -1,0 +1,178 @@
+.swiper__prev,
+.swiper__next {
+  display: none;
+}
+
+.swiper__pagination {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  transform: translateZ(0);
+  transition: opacity 0.3s;
+  z-index: 10;
+  bottom: -25px !important;
+}
+
+.swiper-pagination-bullet {
+  cursor: pointer;
+  width: 14px;
+  height: 4px;
+  background: #E2E6E9;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #313237;
+}
+
+.swiper {
+  max-width: 320px;
+  max-height: 320px;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 50px;
+  padding-inline: 16px;
+
+  @media (min-width: 640px) {
+    max-width: 590px;
+    max-height: 190px;
+
+    .overlayImage {
+      width: 25px;
+      height: 25px;
+      transform: translate(0%, 8vh);
+      padding-top: 8px;
+    }
+
+    .swiper__prev {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      display: flex;
+      left: -32px;
+      background-color: white;
+      border: 1px solid #313237;
+      width: 25px;
+      height: 100%;
+    }
+
+    .swiper__next {
+      cursor: pointer;
+      background-color: white;
+      border: 1px solid #313237;
+      position: absolute;
+      left: 610px;
+      top: 0;
+      display: flex;
+      width: 25px;
+      height: 100%;
+      right: -50px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1136px;
+    max-height: 400px;
+
+    .overlayImage {
+      width: 25px;
+      height: 25px;
+      transform: translate(0%, 200px);
+    }
+
+    .swiper__prev {
+      position: absolute;
+      top: 0;
+      display: flex;
+      left: -16px;
+      background-color: white;
+      border: 1px solid #313237;
+      width: 25px;
+      height: 100%;
+    }
+
+    .swiper__next {
+      background-color: white;
+      border: 1px solid #313237;
+      position: absolute;
+      top: 0;
+      left: 1160px;
+      display: flex;
+      width: 25px;
+      height: 100%;
+      right: 0px;
+    }
+  }
+
+  &__slide {
+    width: 320px;
+    height: 320px;
+    display: grid;
+    display: flex;
+    border-radius: 15px;
+
+    @media (min-width: 640px) {
+      width: 490px;
+      height: 190px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 1040px;
+      height: 400px;
+    }
+  }
+
+  &__wrapper {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+
+    &--1 {
+      background-color: white;
+    }
+
+    &--2 {
+      background-color: white;
+    }
+
+    &--3 {
+      background-color: white;
+    }
+  }
+
+  &__image {
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &--1 {
+      background-image: url("/img/banner-iPhone14.png");
+
+      // @media (max-width: 1199) {
+      //   background-image: url("../../images/icons/Banner.png");
+      //   background-position: right;
+      //   background-size: cover;
+      //   width: 50%;
+      //   border-radius: 0 8px 8px 0;
+      // }
+    }
+
+    &--2 {
+      background-image: url("/img/banner-tablets-slider.png");
+      // background-position: bottom;
+    }
+
+    &--3 {
+      background-image: url("/img/banner-accessories.png");
+      background-size: cover;
+    }
+  }
+}
