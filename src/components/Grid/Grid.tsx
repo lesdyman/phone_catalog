@@ -42,7 +42,10 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
     setDisplayedProducts(allProducts.slice(startIndex, endIndex));
   }, [itemsPerPage, currentPage, allProducts]);
 
-  const updatePaginationButtons = (totalPages: number[], pageNow: number): number[] => {
+  const updatePaginationButtons = (
+    totalPages: number[],
+    pageNow: number,
+  ): number[] => {
     if (totalPages.length <= 4) {
       return totalPages;
     }
@@ -50,7 +53,10 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
     const startPage = Math.max(pageNow - 1, 1);
     const endPage = Math.min(startPage + 3, totalPages.length);
 
-    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+    return Array.from(
+      { length: endPage - startPage + 1 },
+      (_, i) => startPage + i,
+    );
   };
 
   const getTotalPages = (
@@ -65,7 +71,9 @@ export const Grid: React.FC<Props> = ({ category, titlePage, namePage }) => {
     const loadDevices = async () => {
       try {
         const data = await getProducts();
-        const onlyOfCategory = data.filter((item) => item.category === category);
+        const onlyOfCategory = data.filter(
+          (item) => item.category === category,
+        );
         setAllProducts(onlyOfCategory);
       } catch (error) {
         throw new Error(`Error has occurred: ${error}`);

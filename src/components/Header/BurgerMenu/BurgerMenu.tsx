@@ -18,14 +18,26 @@ export const BurgerMenu = () => {
 
   return (
     <div className={`burger-menu ${isOpen ? 'is-open' : ''}`}>
-      <button type="button" className="burger-menu__icon" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        type="button"
+        className="burger-menu__icon"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <img src={menu} alt="Menu" />
       </button>
       {isOpen && (
         <div className="burger-menu__content">
           <div className="burger-menu__header">
-            <img src={logo} alt="Nice Gadgets logo" className="burger-menu__logo" />
-            <a href="#/" className="burger-menu__close" onClick={() => setIsOpen(!isOpen)}>
+            <img
+              src={logo}
+              alt="Nice Gadgets logo"
+              className="burger-menu__logo"
+            />
+            <a
+              href="#/"
+              className="burger-menu__close"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <img src={closeMenu} alt="Close" />
             </a>
           </div>
@@ -67,7 +79,11 @@ export const BurgerMenu = () => {
             <a href="/#favorites" className="burger-menu__icon-footer" aria-label="Heart">
               <img src={heartLike} alt="Heart" />
             </a>
-            <NavLink to="/cart" className="burger-menu__icon-footer" aria-label="Cart">
+            <NavLink
+              to="/cart"
+              className="burger-menu__icon-footer"
+              aria-label="Cart"
+            >
               <img src={cart} alt="Cart" />
             </NavLink>
           </div>

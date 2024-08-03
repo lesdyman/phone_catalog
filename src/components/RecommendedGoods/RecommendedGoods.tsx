@@ -1,9 +1,11 @@
+/* eslint-disable react/require-default-props */
 import React, {
   useCallback,
   useEffect,
   useState,
   useLayoutEffect,
 } from 'react';
+import { useLocation } from 'react-router-dom';
 import './RecommendedGoods.scss';
 import { useLocation } from 'react-router-dom';
 import { ProductCard } from '../ProductCard/ProductCard';
@@ -11,10 +13,16 @@ import { getProducts } from '../../utils/api';
 import { Product } from '../../types/Product';
 
 type Props = {
-  price: number | undefined;
+  price?: number;
+  title: string;
+  sortType: 'model' | 'price' | 'inputPrice';
 };
 
-export const RecommendedGoods: React.FC<Props> = ({ price }) => {
+export const RecommendedGoods: React.FC<Props> = ({
+  sortType,
+  title,
+  price,
+}) => {
   const [phones, setPhones] = useState<Product[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -23,24 +31,90 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
   const [visiblePhones, setVisiblePhones] = useState<Product[]>([]);
   const location = useLocation();
 
+  const sortByNewestModels = (a: Product, b: Product) => {
+    const getModalNumber = (name: string) => {
+      const modelPriorities: { [key: string]: number } = {
+        XS: 10,
+        XR: 9,
+      };
+
+      const match = name.match(/(\d+|XS|XR)/);
+
+      if (match) {
+        const value = match[0];
+        if (modelPriorities[value] !== undefined) {
+          return modelPriorities[value];
+        }
+
+        return parseInt(value, 10);
+      }
+
+      return -1;
+    };
+
+    const getModalPriority = (name: string) => {
+      const priorities: { [key: string]: number } = {
+        'Pro Max': 4,
+        Pro: 3,
+        Plus: 2,
+        Mini: 1,
+      };
+
+      const priorityKey = Object.keys(priorities).find((key) => name.includes(key));
+
+      return priorityKey ? priorities[priorityKey] : 0;
+    };
+
+    const modelNumberA = getModalNumber(a.name);
+    const modelNumberB = getModalNumber(b.name);
+
+    if (modelNumberA !== modelNumberB) {
+      return modelNumberB - modelNumberA;
+    }
+    return getModalPriority(b.name) - getModalPriority(a.name);
+  };
+
+  const sortByPriceDifference = (a: Product, b: Product) => {
+    const priceDiffA = a.fullPrice - a.price;
+    const priceDiffB = b.fullPrice - b.price;
+
+    return priceDiffB - priceDiffA;
+  };
+
   const fetchPhones = useCallback(async () => {
-    if (price === undefined) {
-      return;
-    }
-
     try {
-      const phonesData = (await getProducts()).filter(
-        (prod) => prod.category === location.pathname.split('/')[1],
+      const phonesData = await getProducts();
+      const onlyPhones = phonesData.filter(
+        (item) => item.category
+          === (location.pathname === '/'
+            ? 'phones'
+            : location.pathname.split('/')[1]),
       );
+      let sortedPhones = onlyPhones;
 
-      const alikePhones = phonesData.filter(
-        (phone) => phone.price <= price + 100,
-      );
-      setPhones(alikePhones);
+      if (sortType === 'model') {
+        sortedPhones = onlyPhones
+          .filter((phone) => phone.capacity === '128GB')
+          .sort(sortByNewestModels);
+      }
+
+      if (sortType === 'price') {
+        sortedPhones = onlyPhones
+          .filter((phone) => phone.price < 1000)
+          .sort(sortByPriceDifference);
+      }
+
+      if (sortType === 'inputPrice') {
+        if (price) {
+          sortedPhones = onlyPhones.filter((phone) => phone.price <= price);
+        }
+      }
+
+      setPhones(sortedPhones);
     } catch (error) {
-      throw new Error('Failed to fetch phones:');
+      throw new Error(`Failed to fetch phones: ${error}`);
     }
-  }, [price]);
+  }, [location.pathname, price, sortType]);
 
   useEffect(() => {
     fetchPhones();
@@ -98,7 +172,7 @@ export const RecommendedGoods: React.FC<Props> = ({ price }) => {
   return (
     <>
       <div className="recommended">
-        <h1 className="recommended_title">You may also like</h1>
+        <h2 className="recommended_title">{title}</h2>
         <div className="recommended_buttons">
           <button
             className="recommended_arrow"

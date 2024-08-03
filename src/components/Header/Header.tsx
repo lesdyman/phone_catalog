@@ -9,6 +9,7 @@ import { useFavorites } from '../../utils/useFavorites';
 export const Header: React.FC = () => {
   const cartContext = useContext(CartContext);
   const favoritesContext = useFavorites();
+
   return (
     <header className="header">
       <div className="container">
@@ -69,7 +70,11 @@ export const Header: React.FC = () => {
                   className="icon icon--heart"
                   aria-label="Heart"
                 />
-                <div className="circle">{favoritesContext.favorites.length}</div>
+                {!!favoritesContext.favorites.length && (
+                  <div className="circle">
+                    {favoritesContext.favorites.length}
+                  </div>
+                )}
               </div>
               <div className="cartAndFavoriteWrap">
                 <a
@@ -77,7 +82,10 @@ export const Header: React.FC = () => {
                   className="icon icon--cart"
                   aria-label="Cart"
                 />
-                <div className="circle">{cartContext?.cart.length}</div>
+
+                {!!cartContext?.cart.length && (
+                  <div className="circle">{cartContext?.cart.length}</div>
+                )}
               </div>
             </div>
             <BurgerMenu />

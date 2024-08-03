@@ -326,7 +326,11 @@ export const BaseLayout = () => {
             </div>
           </div>
         </div>
-        <RecommendedGoods price={gadget?.priceDiscount} />
+        <RecommendedGoods
+          title="You also may like"
+          sortType="inputPrice"
+          price={gadget?.priceRegular}
+        />
       </div>
     </div>
   );
