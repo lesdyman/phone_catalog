@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import './RecommendedGoods.scss';
-import { useLocation } from 'react-router-dom';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { getProducts } from '../../utils/api';
 import { Product } from '../../types/Product';
