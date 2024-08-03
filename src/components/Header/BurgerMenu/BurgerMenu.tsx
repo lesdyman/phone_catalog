@@ -76,11 +76,7 @@ export const BurgerMenu = () => {
             </li>
           </ul>
           <div className="burger-menu__footer">
-            <a
-              href="/#favorites"
-              className="burger-menu__icon-footer"
-              aria-label="Heart"
-            >
+            <a href="/#favorites" className="burger-menu__icon-footer" aria-label="Heart">
               <img src={heartLike} alt="Heart" />
             </a>
             <NavLink
