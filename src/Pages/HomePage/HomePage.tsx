@@ -2,6 +2,7 @@ import React from 'react';
 import './HomePage.scss';
 import { NavLink } from 'react-router-dom';
 import { RecommendedGoods } from '../../components/RecommendedGoods/RecommendedGoods';
+import { HomePageSliderMain } from '../../components/HomePageSliderMain/HomePageSliderMain';
 
 export const HomePage: React.FC = () => {
   return (
@@ -11,9 +12,10 @@ export const HomePage: React.FC = () => {
       </div>
 
       <h2 className="homepage__title-h2">Now avalible in our store</h2>
-      <section>
-        <div className="slider-container" />
-      </section>
+
+      <div className="slider-container">
+        <HomePageSliderMain />
+      </div>
 
       <section className="new-models">
         <div className="recomendation-block">

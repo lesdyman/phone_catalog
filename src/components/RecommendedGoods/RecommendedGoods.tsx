@@ -17,7 +17,11 @@ type Props = {
   sortType: 'model' | 'price' | 'inputPrice';
 };
 
-export const RecommendedGoods: React.FC<Props> = ({ sortType, title, price }) => {
+export const RecommendedGoods: React.FC<Props> = ({
+  sortType,
+  title,
+  price,
+}) => {
   const [phones, setPhones] = useState<Product[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -80,7 +84,10 @@ export const RecommendedGoods: React.FC<Props> = ({ sortType, title, price }) =>
     try {
       const phonesData = await getProducts();
       const onlyPhones = phonesData.filter(
-        (item) => item.category === (location.pathname === '/' ? 'phones' : location.pathname.split('/')[1]),
+        (item) => item.category
+          === (location.pathname === '/'
+            ? 'phones'
+            : location.pathname.split('/')[1]),
       );
       let sortedPhones = onlyPhones;
 
