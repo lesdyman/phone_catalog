@@ -199,29 +199,11 @@
     &:active {
       border: 1px solid var(--color-icons);
     }
-
-    &:active {
-      & .product_button__like-image-white {
-        opacity: 0;
-      }
-
-      & .product_button__like-image-red {
-        opacity: 1;
-      }
-    }
   }
 
   &__like-image {
     width: 16px;
     height: 16px;
     position: absolute;
-
-    &-white {
-      opacity: 1;
-    }
-
-    &-red {
-      opacity: 0;
-    }
   }
 }

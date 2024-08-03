@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import './ProductCard.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
+import { useFavorites } from '../../utils/useFavorites';
 
 type Props = {
   product: Product;
@@ -11,7 +12,9 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const context = useContext(CartContext);
+  const favorites = useFavorites();
 
   if (!context) {
     throw new Error('CartContext must be used within a CartProvider');
@@ -22,7 +25,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const inCart = cart.find((el) => el.itemId === product.itemId);
 
   const relocate = () => {
-    navigate(`${product.itemId}`);
+    navigate(
+      location.pathname === '/'
+        ? `phones/${product.itemId}`
+        : `${product.itemId}`,
+    );
   };
 
   const handleButtonClick = (
@@ -48,7 +55,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       <img
         src={product.image}
         alt={product.name}
-        className="product_images list__item example"
+        className="product_images list__item"
+        // className="product_images list__item example"
       />
       <h2 className="product_name">{product.name}</h2>
 
@@ -99,18 +107,24 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           type="button"
           aria-label="Like"
           className="product_button__like"
-          onClick={handleButtonClick}
+          onClick={(e) => {
+            handleButtonClick(e);
+            favorites.addItem(product);
+          }}
         >
-          <img
-            className="product_button__like-image product_button__like-image-white"
-            src="/img/icons/heartLike.svg"
-            alt="Like button icon white"
-          />
-          <img
-            className="product_button__like-image product_button__like-image-red"
-            src="/img/icons/redHeartLike.svg"
-            alt="Like button icon red"
-          />
+          {!favorites.favorites.some((el) => el.itemId === product.itemId) ? (
+            <img
+              className="product_button__like-image product_button__like-image-white"
+              src="/img/icons/heartLike.svg"
+              alt="Like button icon white"
+            />
+          ) : (
+            <img
+              className="product_button__like-image product_button__like-image-red"
+              src="/img/icons/redHeartLike.svg"
+              alt="Like button icon red"
+            />
+          )}
         </button>
       </div>
     </div>

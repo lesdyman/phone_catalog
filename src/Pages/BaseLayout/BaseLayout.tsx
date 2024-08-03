@@ -5,16 +5,23 @@ import './BaseLayout.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { Device } from '../../types/Device';
-import { getPhones, getProducts } from '../../utils/api';
+import {
+  getAccessories,
+  getPhones,
+  getProducts,
+  getTablets,
+} from '../../utils/api';
 import { CartContext } from '../../utils/CartContext';
 import { Product } from '../../types/Product';
 import { ItemSlider } from '../../components/ItemCard-slider/ItemSlider';
 import { RecommendedGoods } from '../../components/RecommendedGoods/RecommendedGoods';
+import { useFavorites } from '../../utils/useFavorites';
 
 export const BaseLayout = () => {
-  const [phone, setPhone] = useState<Device>();
+  const [gadget, setGadget] = useState<Device>();
   const [product, setProduct] = useState<Product | undefined>();
   const context = useContext(CartContext);
+  const favorites = useFavorites();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,14 +31,36 @@ export const BaseLayout = () => {
 
   const { cart, addToCart } = context;
 
-  const inCart = cart.find((el) => el.itemId === phone?.id);
+  const inCart = cart.find((el) => el.itemId === gadget?.id);
+
+  const detectCategory = (place: string) => {
+    if (place === '/#') {
+      return getPhones();
+    }
+
+    switch (place.split('/')[1]) {
+      case 'phones':
+        return getPhones();
+
+      case 'tablets':
+        return getTablets();
+
+      case 'accessories':
+        return getAccessories();
+
+      default:
+        return undefined;
+    }
+  };
 
   const loadPhones = useCallback(async () => {
     try {
-      const result = await getPhones();
-      setPhone(
-        result.find((device) => location.pathname.split('/').includes(device.id)),
-      );
+      const result = await detectCategory(location.pathname);
+      if (result) {
+        setGadget(
+          result.find((device) => location.pathname.split('/').includes(device.id)),
+        );
+      }
     } catch {
       throw new Error('Failed loading phone');
     }
@@ -65,12 +94,20 @@ export const BaseLayout = () => {
 
   const activeColor = () => {
     const currentColor = location.pathname.split('-');
-    return currentColor[currentColor.length - 1];
+    return currentColor
+      .filter(
+        (_el, index) => index === currentColor.length - 1
+          || index === currentColor.length - 2,
+      )
+      .join(' ');
   };
 
   const activeCapacity = () => {
     const currentCapacity = location.pathname.split('-');
-    return currentCapacity[currentCapacity.length - 2].toUpperCase();
+
+    return location.pathname.includes('space-gray')
+      ? currentCapacity[currentCapacity.length - 3].toLowerCase()
+      : currentCapacity[currentCapacity.length - 2].toLowerCase();
   };
 
   const home = () => {
@@ -81,20 +118,41 @@ export const BaseLayout = () => {
     window.location.href = '#/phones';
   };
 
+  // const redirectByColor = (color: string) => {
+  //   const pathSegments = location.pathname.split('/');
+  //   if (gadget?.color) {
+  //     pathSegments[pathSegments.length - 1] = pathSegments[
+  //       pathSegments.length - 1
+  //     ].replace(gadget.color, color);
+  //     const newPath = pathSegments.join('/');
+  //     navigate(newPath);
+  //     window.location.reload();
+  //   }
+  // };
+
   const redirectByColor = (color: string) => {
-    const pathSegments = location.pathname.split('-');
-    pathSegments[pathSegments.length - 1] = color;
-    const newPath = pathSegments.join('-');
-    navigate(newPath);
+    navigate(
+      `${gadget?.namespaceId}-${gadget?.capacity.toLowerCase()}-${color.replace(' ', '-')}`,
+    );
     window.location.reload();
   };
 
   const redirectByRAM = (capacity: string) => {
     const pathSegments = location.pathname.split('-');
-    pathSegments[pathSegments.length - 2] = capacity.toLowerCase();
+    if (location.pathname.includes('space-gray')) {
+      pathSegments[pathSegments.length - 3] = capacity.toLowerCase();
+    } else {
+      pathSegments[pathSegments.length - 2] = capacity.toLowerCase();
+    }
     const newPath = pathSegments.join('-');
     navigate(newPath);
     window.location.reload();
+  };
+
+  const addToFavorites = () => {
+    if (product) {
+      favorites.addItem(product);
+    }
   };
 
   return (
@@ -111,25 +169,25 @@ export const BaseLayout = () => {
             Phones
           </div>
           <div className="arrow" />
-          <div className="model">{phone?.name}</div>
+          <div className="model">{gadget?.name}</div>
         </div>
 
         <button type="button" className="backButton">
           Back
         </button>
 
-        <h1 className="modelName">{phone?.name}</h1>
+        <h1 className="modelName">{gadget?.name}</h1>
         <div className="modelContainer">
           <div className="sliderContainer">
-            <ItemSlider images={phone?.images} />
+            <ItemSlider images={gadget?.images} />
           </div>
           <div className="selectModel">
             <div className="colorsAvaible">
               <p className="avaible">Avaible colors</p>
               <div className="colors">
-                {phone?.colorsAvailable.map((color) => (
+                {gadget?.colorsAvailable.map((color) => (
                   <div
-                    className={`color ${color} ${activeColor() === color ? 'activeColor' : ''}`}
+                    className={`color ${color.replace(' ', '')} ${activeColor().includes(color) ? 'activeColor' : ''}`}
                     key={color}
                     onClick={() => redirectByColor(color)}
                     style={{ cursor: 'pointer' }}
@@ -143,9 +201,9 @@ export const BaseLayout = () => {
             <div className="capacity">
               <div className="avaible">Select capacity</div>
               <div className="chooseCapacity">
-                {phone?.capacityAvailable.map((capacity) => (
+                {gadget?.capacityAvailable.map((capacity) => (
                   <div
-                    className={`ram ${capacity === activeCapacity() ? 'activeCapacity' : ''}`}
+                    className={`ram ${capacity.toLowerCase() === activeCapacity() ? 'activeCapacity' : ''}`}
                     key={capacity}
                     onClick={() => redirectByRAM(capacity)}
                     style={{ cursor: 'pointer' }}
@@ -159,15 +217,15 @@ export const BaseLayout = () => {
             <div className="line" />
 
             <div className="modelPrice">
-              <p className="product_price__discount">{`$${phone?.priceDiscount}`}</p>
-              <p className="product_price__regular">{`$${phone?.priceRegular}`}</p>
+              <p className="product_price__discount">{`$${gadget?.priceDiscount}`}</p>
+              <p className="product_price__regular">{`$${gadget?.priceRegular}`}</p>
             </div>
 
             <div className="actionButtons">
               <button
                 type="button"
                 className={classNames('addToCart', {
-                  added: inCart?.itemId === phone?.id,
+                  added: inCart?.itemId === gadget?.id,
                 })}
                 onClick={() => {
                   if (product) {
@@ -175,11 +233,16 @@ export const BaseLayout = () => {
                   }
                 }}
               >
-                {inCart?.itemId === phone?.id ? 'Added' : 'Add to cart'}
+                {inCart?.itemId === gadget?.id ? 'Added' : 'Add to cart'}
               </button>
               <button
                 type="button"
-                className="addToFavorite"
+                className={classNames('addToFavorite', {
+                  activeFavorites: favorites.favorites.some(
+                    (el) => el.itemId === gadget?.id,
+                  ),
+                })}
+                onClick={addToFavorites}
                 aria-label="addToFavorite"
               />
             </div>
@@ -187,19 +250,19 @@ export const BaseLayout = () => {
             <div className="info">
               <div className="screen">
                 <span className="infoTitle">Screen</span>
-                <span className="modelInfo">{phone?.screen}</span>
+                <span className="modelInfo">{gadget?.screen}</span>
               </div>
               <div className="resolution">
                 <span className="infoTitle">Resolution</span>
-                <span className="modelInfo">{phone?.resolution}</span>
+                <span className="modelInfo">{gadget?.resolution}</span>
               </div>
               <div className="processor">
                 <span className="infoTitle">Processor</span>
-                <span className="modelInfo">{phone?.processor}</span>
+                <span className="modelInfo">{gadget?.processor}</span>
               </div>
               <div className="memory">
                 <span className="infoTitle">RAM</span>
-                <span className="modelInfo">{phone?.ram}</span>
+                <span className="modelInfo">{gadget?.ram}</span>
               </div>
             </div>
           </div>
@@ -213,7 +276,7 @@ export const BaseLayout = () => {
 
             <div className="breakLine" />
 
-            {phone?.description.map((el) => (
+            {gadget?.description.map((el) => (
               <div key={el.title} className="general">
                 <h1 className="infoHead">{el.title}</h1>
                 <div className="infoFilling">
@@ -233,41 +296,45 @@ export const BaseLayout = () => {
               <div className="wrap">
                 <li className="disableList">
                   <p className="techTitle">Screen</p>
-                  <p className="spec">{phone?.screen}</p>
+                  <p className="spec">{gadget?.screen}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">Resolution</p>
-                  <p className="spec">{phone?.resolution}</p>
+                  <p className="spec">{gadget?.resolution}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">Processor</p>
-                  <p className="spec">{phone?.processor}</p>
+                  <p className="spec">{gadget?.processor}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">RAM</p>
-                  <p className="spec">{phone?.ram}</p>
+                  <p className="spec">{gadget?.ram}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">Built in memory</p>
-                  <p className="spec">{phone?.capacity}</p>
+                  <p className="spec">{gadget?.capacity}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">Camera</p>
-                  <p className="spec">{phone?.camera}</p>
+                  <p className="spec">{gadget?.camera}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">Zoom</p>
-                  <p className="spec">{phone?.zoom}</p>
+                  <p className="spec">{gadget?.zoom}</p>
                 </li>
                 <li className="disableList">
                   <p className="techTitle">Cell</p>
-                  <p className="spec">{phone?.cell.join(', ')}</p>
+                  <p className="spec">{gadget?.cell.join(', ')}</p>
                 </li>
               </div>
             </div>
           </div>
         </div>
-        <RecommendedGoods price={phone?.priceDiscount} />
+        <RecommendedGoods
+          title="You also may like"
+          sortType="inputPrice"
+          price={gadget?.priceRegular}
+        />
       </div>
     </div>
   );
