@@ -34,6 +34,10 @@ export const BaseLayout = () => {
   const inCart = cart.find((el) => el.itemId === gadget?.id);
 
   const detectCategory = (place: string) => {
+    if (place === '/#') {
+      return getPhones();
+    }
+
     switch (place.split('/')[1]) {
       case 'phones':
         return getPhones();
