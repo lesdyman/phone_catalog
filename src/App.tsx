@@ -14,6 +14,7 @@ import { CartProvider } from './utils/CartProvider.tsx';
 import { BaseLayout } from './Pages/BaseLayout/BaseLayout.tsx';
 import { FavouriteItems } from './components/FavoriteItems/FavoriteItems.tsx';
 import { FavoriteProvider } from './utils/FavoriteProvider.tsx';
+import { Contacts } from './Pages/Contacts/Contacts.tsx';
 
 export const App: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ export const App: React.FC = () => {
                 <Route path="/accessories" element={<AccessoriesPage />} />
                 <Route path="/favorites" element={<FavouriteItems />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/contacts" element={<Contacts />} />
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </main>
