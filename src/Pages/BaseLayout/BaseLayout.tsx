@@ -92,16 +92,6 @@ export const BaseLayout = () => {
     getProduct();
   }, [location, getProduct]);
 
-  const activeColor = () => {
-    const currentColor = location.pathname.split('-');
-    return currentColor
-      .filter(
-        (_el, index) => index === currentColor.length - 1
-          || index === currentColor.length - 2,
-      )
-      .join(' ');
-  };
-
   const activeCapacity = () => {
     const currentCapacity = location.pathname.split('-');
 
@@ -117,18 +107,6 @@ export const BaseLayout = () => {
   const phonesLink = () => {
     window.location.href = '#/phones';
   };
-
-  // const redirectByColor = (color: string) => {
-  //   const pathSegments = location.pathname.split('/');
-  //   if (gadget?.color) {
-  //     pathSegments[pathSegments.length - 1] = pathSegments[
-  //       pathSegments.length - 1
-  //     ].replace(gadget.color, color);
-  //     const newPath = pathSegments.join('/');
-  //     navigate(newPath);
-  //     window.location.reload();
-  //   }
-  // };
 
   const redirectByColor = (color: string) => {
     navigate(
@@ -187,7 +165,7 @@ export const BaseLayout = () => {
               <div className="colors">
                 {gadget?.colorsAvailable.map((color) => (
                   <div
-                    className={`color ${color.replace(' ', '')} ${activeColor().includes(` ${color}`) ? 'activeColor' : ''}`}
+                    className={`color ${color.replace(' ', '')} ${color === gadget.color ? 'activeColor' : ''}`}
                     key={color}
                     onClick={() => redirectByColor(color)}
                     style={{ cursor: 'pointer' }}
