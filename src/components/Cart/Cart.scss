@@ -257,6 +257,7 @@ $mainFont: Mont, sans-serif;
   .interface {
     flex-direction: column;
     align-items: center;
+    margin-bottom: auto;
   }
 
   .cartGrid {
@@ -332,7 +333,11 @@ $mainFont: Mont, sans-serif;
     height: 30px;
   }
 
+  .noCartItems {
+    height: 280px;
+  }
+
   .noCartItemsTitle {
-    font-size: 30px;
+    font-size: 25px;
   }
 }

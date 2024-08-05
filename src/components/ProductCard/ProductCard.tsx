@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import './ProductCard.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { CartContext } from '../../utils/CartContext';
 import { useFavorites } from '../../utils/useFavorites';
@@ -12,7 +12,6 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const navigate = useNavigate();
-  const location = useLocation();
   const context = useContext(CartContext);
   const favorites = useFavorites();
 
@@ -25,11 +24,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const inCart = cart.find((el) => el.itemId === product.itemId);
 
   const relocate = () => {
-    navigate(
-      location.pathname === '/'
-        ? `phones/${product.itemId}`
-        : `${product.itemId}`,
-    );
+    navigate(`/${product.category}/${product.itemId}`);
   };
 
   const handleButtonClick = (
