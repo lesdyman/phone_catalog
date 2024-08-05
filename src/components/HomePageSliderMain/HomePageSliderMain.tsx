@@ -42,14 +42,14 @@ export const HomePageSliderMain: React.FC = () => {
           </SwiperSlide>
           <SwiperSlide className={styles.swiper__slide}>
             <a
-              href="phones/#/tablets"
+              href="/#/tablets"
               aria-label="Slide 2 image"
               className={`${styles.swiper__image} ${styles['swiper__image--2']}`}
             />
           </SwiperSlide>
           <SwiperSlide className={styles.swiper__slide}>
             <a
-              href="phones/#/accessories"
+              href="/#/accessories"
               aria-label="Slide 3 image"
               className={`${styles.swiper__image} ${styles['swiper__image--3']}`}
             />

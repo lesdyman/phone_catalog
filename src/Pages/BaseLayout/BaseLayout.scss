@@ -227,7 +227,7 @@ $main-font: Mont, sans-serif;
   border: 1px solid #313237;
 }
 
-.addToFavorite:focus {
+.activeFavorites {
   background-image: url('/Icons/Favourites\ Filled\ \(Heart\ Like\).svg');
 }
 
@@ -505,13 +505,13 @@ $main-font: Mont, sans-serif;
   background-color: white;
 }
 .purple {
-  background-color: purple;
+  background-color: rgb(180, 26, 180);
 }
 .red {
   background-color: red;
 }
 .gold {
-  background-color: gold;
+  background-color: rgb(241, 199, 59);
 }
 .midnightgreen {
   background-color: rgb(24, 51, 12);
@@ -535,10 +535,10 @@ $main-font: Mont, sans-serif;
   background-color: rgb(26, 26, 26);
 }
 .blue {
-  background-color: blue;
+  background-color: rgb(39, 39, 255);
 }
 .pink {
-  background-color: pink;
+  background-color: rgb(255, 77, 106);
 }
 .sierrablue {
   background-color: rgb(117, 142, 255);

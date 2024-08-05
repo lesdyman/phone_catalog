@@ -76,16 +76,15 @@ export const BurgerMenu = () => {
             </li>
           </ul>
           <div className="burger-menu__footer">
-            <a
-              href="#/"
-              className="burger-menu__icon-footer"
+              to="/favorites"
+              className={({ isActive }) => `burger-menu__icon-footer ${isActive ? 'is-active' : ''}`}
               aria-label="Heart"
             >
               <img src={heartLike} alt="Heart" />
-            </a>
+            </NavLink>
             <NavLink
               to="/cart"
-              className="burger-menu__icon-footer"
+              className={({ isActive }) => `burger-menu__icon-footer ${isActive ? 'is-active' : ''}`}
               aria-label="Cart"
             >
               <img src={cart} alt="Cart" />

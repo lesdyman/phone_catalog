@@ -1,7 +1,7 @@
 .swiper {
   width: 100%;
   border: none;
-  margin: auto;
+  // margin: auto;
   // overflow:visible;
 }
 .slider {
@@ -28,6 +28,7 @@
 
   &__preview-pictures {
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
     height: 100%;
 
@@ -80,4 +81,7 @@
       }
     }
   }
+}
+.swiper-vertical {
+  height: 100%;
 }
