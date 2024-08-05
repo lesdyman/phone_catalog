@@ -101,6 +101,7 @@
   &__title-h2 {
     font-size: 32px;
     line-height: 41px;
+    margin: 24px;
 
     @include on-phone {
       font-size: 22px;
