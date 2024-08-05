@@ -20,7 +20,7 @@ export const FavouriteItems = () => {
           <h1 className="component__title">Favourites</h1>
         </div>
         <div className="component__models-number">
-          <p>... models</p>
+          <p>{`${context.favorites.length} models`}</p>
         </div>
         <div className="component__wrap">
           {context.favorites.length ? (

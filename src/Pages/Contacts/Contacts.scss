@@ -1,0 +1,64 @@
+.contacts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.contacts__person {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.person__photo {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  background-color: #ccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 15px;
+
+  &--1 {
+    background-image: url(/img/contacts/Les.png);
+  }
+  &--2 {
+    background-image: url(/img/contacts/Veronika.jfif);
+  }
+  &--3 {
+    background-image: url(/img/contacts/Vitalij.jfif);
+  }
+  &--4 {
+    background-image: url(/img/contacts/Nazar.png);
+  }
+  &--5 {
+    background-image: url(/img/contacts/Stas.png);
+  }
+}
+
+.person__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.person__name {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.person__info a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.person__info a:hover {
+  text-decoration: underline;
+}
