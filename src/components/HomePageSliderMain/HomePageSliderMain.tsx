@@ -10,7 +10,7 @@ import styles from './HomePageSliderMain.module.scss';
 
 export const HomePageSliderMain: React.FC = () => {
   return (
-    <div>
+    <div id="top">
       <div className={`main__swiper ${styles.swiper}`}>
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}

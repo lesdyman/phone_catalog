@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './HomePage.scss';
 import { NavLink } from 'react-router-dom';
 import { RecommendedGoods } from '../../components/RecommendedGoods/RecommendedGoods';
 import { HomePageSliderMain } from '../../components/HomePageSliderMain/HomePageSliderMain';
+import { Product } from '../../types/Product';
+import { getProducts } from '../../utils/api';
 
 export const HomePage: React.FC = () => {
+  const [allStuff, setAllStuff] = useState<Product[]>([]);
+
+  const getAllStuff = async () => {
+    try {
+      const allWeHave = await getProducts();
+      setAllStuff(allWeHave);
+    } catch {
+      throw new Error('Cannot load all stuff on homepage');
+    }
+  };
+
+  useEffect(() => {
+    getAllStuff();
+  }, []);
+
+  const countStuff = () => {
+    const inPhoneCattegory = allStuff.filter((device) => device.category === 'phones');
+    const inTabletCategory = allStuff.filter((device) => device.category === 'tablets');
+    const inAccessories = allStuff.filter((device) => device.category === 'accessories');
+
+    return { inPhoneCattegory, inTabletCategory, inAccessories };
+  };
+
   return (
     <div className="homepage">
       <div className="homepage__title--welcome">
@@ -29,14 +54,14 @@ export const HomePage: React.FC = () => {
               <div className="categories__image categories__image--phones" />
               <div className="categories__bottom">
                 <h3 className="categories__name">Mobile phones</h3>
-                <p className="categories__description">95 models</p>
+                <p className="categories__description">{`${countStuff().inPhoneCattegory.length} models`}</p>
               </div>
             </NavLink>
             <NavLink to="/tablets" className="categories__item">
               <div className="categories__image categories__image--tablets" />
               <div className="categories__bottom">
                 <h3 className="categories__name">Tablets</h3>
-                <p className="categories__description">24 models</p>
+                <p className="categories__description">{`${countStuff().inTabletCategory.length} models`}</p>
               </div>
             </NavLink>
 
@@ -44,7 +69,7 @@ export const HomePage: React.FC = () => {
               <div className="categories__image categories__image--accessories" />
               <div className="categories__bottom">
                 <h3 className="categories__name">Accessories</h3>
-                <p className="categories__description">100 models</p>
+                <p className="categories__description">{`${countStuff().inAccessories.length} models`}</p>
               </div>
             </NavLink>
           </div>
