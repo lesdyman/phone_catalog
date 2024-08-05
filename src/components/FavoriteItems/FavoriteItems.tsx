@@ -31,7 +31,7 @@ export const FavouriteItems = () => {
             </div>
           ) : (
             <div className="noItems">
-              <h1 className="noItemsTitle">No favorite items</h1>
+              <h1 className="noItemsTitle">No favorite products</h1>
             </div>
           )}
         </div>
