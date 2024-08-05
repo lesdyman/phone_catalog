@@ -23,9 +23,15 @@ export const HomePage: React.FC = () => {
   }, []);
 
   const countStuff = () => {
-    const inPhoneCattegory = allStuff.filter((device) => device.category === 'phones');
-    const inTabletCategory = allStuff.filter((device) => device.category === 'tablets');
-    const inAccessories = allStuff.filter((device) => device.category === 'accessories');
+    const inPhoneCattegory = allStuff.filter(
+      (device) => device.category === 'phones',
+    );
+    const inTabletCategory = allStuff.filter(
+      (device) => device.category === 'tablets',
+    );
+    const inAccessories = allStuff.filter(
+      (device) => device.category === 'accessories',
+    );
 
     return { inPhoneCattegory, inTabletCategory, inAccessories };
   };
