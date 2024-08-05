@@ -187,7 +187,7 @@ export const BaseLayout = () => {
               <div className="colors">
                 {gadget?.colorsAvailable.map((color) => (
                   <div
-                    className={`color ${color.replace(' ', '')} ${activeColor().includes(` ${color}`) ? 'activeColor' : ''}`}
+                    className={`color ${color.replace(' ', '')} ${activeColor().includes(color) ? 'activeColor' : ''}`}
                     key={color}
                     onClick={() => redirectByColor(color)}
                     style={{ cursor: 'pointer' }}
