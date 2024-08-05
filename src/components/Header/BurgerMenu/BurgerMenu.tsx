@@ -76,6 +76,7 @@ export const BurgerMenu = () => {
             </li>
           </ul>
           <div className="burger-menu__footer">
+            <NavLink
               to="/favorites"
               className={({ isActive }) => `burger-menu__icon-footer ${isActive ? 'is-active' : ''}`}
               aria-label="Heart"
